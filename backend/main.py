@@ -1,58 +1,90 @@
 #!/usr/bin/env python3
 """
 Main entrypoint for the Travel Assistant.
-Supports both:
-- CLI interactive mode
-- FastAPI server mode (via uvicorn)
+Supports:
+- FastAPI server (cloud/local)
+- CLI (local)
 """
 
 import os
+import sys
 import logging
 import traceback
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
-from fastapi.middleware.cors import CORSMiddleware   # ✅ CORS middleware
+from fastapi.middleware.cors import CORSMiddleware
 from travel_assistant.router import routes_assistant
 from travel_assistant.utils.helpers import format_response
 
 # ------------------ Logging Setup ------------------
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-LOG_DIR = os.path.join(BASE_DIR, "logs")  # ./backend/logs
-os.makedirs(LOG_DIR, exist_ok=True)
+def _is_writable(path: str) -> bool:
+    try:
+        os.makedirs(path, exist_ok=True)
+        test_file = os.path.join(path, ".write_test")
+        with open(test_file, "w") as f:
+            f.write("ok")
+        os.remove(test_file)
+        return True
+    except Exception:
+        return False
+
+# Prefer env, then /app/logs, fall back to /tmp/app-logs, else stdout only
+DEFAULT_LOG_DIRS = [
+    os.getenv("LOG_DIR") or "",                    # explicit env
+    os.path.join(os.path.dirname(os.path.abspath(__file__)), "logs"),  # ./backend/logs (local dev)
+    "/app/logs",                                   # container path (if writable)
+    "/var/log/app",                                # if running as root and writable
+    "/tmp/app-logs"                                # always writable in containers
+]
+
+log_dir = None
+for cand in DEFAULT_LOG_DIRS:
+    if not cand:
+        continue
+    if _is_writable(cand):
+        log_dir = cand
+        break
+
+handlers = [logging.StreamHandler(sys.stdout)]
+if log_dir:
+    try:
+        handlers.append(logging.FileHandler(os.path.join(log_dir, "app.log")))
+    except Exception:
+        # If file handler fails, we’ll just stream logs.
+        pass
 
 logging.basicConfig(
-    level=logging.INFO,
+    level=os.getenv("LOG_LEVEL", "INFO"),
     format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
-    handlers=[
-        logging.StreamHandler(),  # stdout (docker logs)
-        logging.FileHandler(os.path.join(LOG_DIR, "app.log"))  # persistent file
-    ]
+    handlers=handlers,
 )
 logger = logging.getLogger("travel_assistant.main")
+if log_dir:
+    logger.info(f"🗄️ Logging to {log_dir}/app.log")
+else:
+    logger.info("🗄️ File logging disabled (stdout only).")
 
 # ------------------ FASTAPI APP ------------------
 app = FastAPI(title="Travel Assistant API")
 
-# ✅ Enable CORS
 origins = [
-    "http://localhost:3000",  # e.g. Next.js frontend
+    os.getenv("FRONTEND_ORIGIN", "http://localhost:3000"),
     "http://127.0.0.1:3000",
-    "*"  # allow all origins (you can restrict this later)
+    os.getenv("ALLOW_ORIGIN_WILDCARD", "*"),
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,          # list of allowed origins
+    allow_origins=[o for o in origins if o],  # filter Nones
     allow_credentials=True,
-    allow_methods=["*"],            # allow all HTTP methods
-    allow_headers=["*"],            # allow all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-# ✅ Register routers
 app.include_router(routes_assistant.router, prefix="/assistant", tags=["assistant"])
 logger.info("🚀 FastAPI app initialized. Router /assistant mounted.")
 
-# ✅ Global Exception Handler
+# ------------------ Global Exception Handler ------------------
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
     tb = traceback.format_exc()
@@ -61,107 +93,53 @@ async def global_exception_handler(request: Request, exc: Exception):
         status_code=500,
         content={
             "error": str(exc),
-            "traceback": tb.splitlines()[-5:],  # last 5 lines for debug
-            "path": str(request.url)
-        }
+            "traceback": tb.splitlines()[-5:],
+            "path": str(request.url),
+        },
     )
 
-# ------------------ CLI MODE ------------------
+# ------------------ CLI MODE (optional local) ------------------
 def clear_screen():
-    """Clear terminal screen"""
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def print_banner():
-    """Print application banner"""
     banner = """
     🧭 TRAVEL ASSISTANT 🧭
     Your AI-powered travel planning companion
-    
-    I can help you with:
-    • Destination recommendations
-    • Packing suggestions  
-    • Local attractions and activities
-    • General travel advice
-    
-    Type 'quit' to exit, 'help' for commands, 'summary' for conversation summary
     """
     print(banner)
 
-def print_help():
-    """Print help information"""
-    help_text = """
-    Available Commands:
-    • quit/exit/bye - Exit the application
-    • help - Show this help message  
-    • summary - Show conversation summary
-    • clear - Clear the conversation
-    
-    Example Questions:
-    • "Where should I go for a beach vacation with a $2000 budget?"
-    • "What should I pack for a week in Japan in spring?"
-    • "What are the best attractions in Paris?"
-    • "I need adventure travel ideas for Southeast Asia"
-    """
-    print(help_text)
-
 def run_cli():
-    """Main application loop for CLI"""
     from travel_assistant.core.assistant import TravelAssistant
     assistant = TravelAssistant()
 
     clear_screen()
     print_banner()
-    print("🔮 Assistant: Hello! I'm your travel assistant. How can I help you with your travel plans today?")
-    print("-" * 80)
-
-    logger.info("CLI started. Waiting for user input...")
+    print("🔮 Assistant: Hello! How can I help you with your travel plans today?")
 
     while True:
         try:
             user_input = input("\n🧳 You: ").strip()
-            logger.info(f"Received user input: {user_input}")
-
             if not user_input:
                 continue
-
-            if user_input.lower() in ['quit', 'exit', 'bye']:
-                print("\n🔮 Assistant: Safe travels! Come back if you need more travel advice. 👋")
-                logger.info("User exited CLI session.")
+            if user_input.lower() in ("quit", "exit", "bye"):
+                print("\n👋 Safe travels!")
                 break
-
-            elif user_input.lower() == 'help':
-                print_help()
-                continue
-
-            elif user_input.lower() == 'summary':
-                summary = assistant.get_conversation_summary()
-                print(f"\n📊 Conversation Summary:\n{summary}")
-                continue
-
-            elif user_input.lower() == 'clear':
-                clear_screen()
-                print_banner()
-                print("🔮 Assistant: Conversation cleared! How can I help you now?")
-                continue
-
-            # Generate and display response
             print("\n🤖 Thinking...")
-            response = assistant.generate_response(user_input)
-
-            formatted_response = format_response(response)
-            print(f"🔮 Assistant: {formatted_response}")
-            logger.info("Response delivered to user.")
-
+            # If your assistant.generate_response is async, you can adapt with asyncio.run here.
+            resp = asyncio.run(assistant.generate_response(user_input))  # if generate_response is async
+            print(f"\n🔮 Assistant: {format_response(resp)}")
         except KeyboardInterrupt:
-            print("\n\n🔮 Assistant: Safe travels! Come back anytime. 👋")
-            logger.warning("CLI interrupted with Ctrl+C.")
+            print("\n\n👋 Safe travels!")
             break
         except Exception as e:
-            logger.error(f"Unexpected error: {e}", exc_info=True)
-            print(f"\n❌ Error: {e}")
-            print("🔮 Assistant: I apologize for the technical issue. Please try again.")
+            logger.exception("CLI error")
+            print(f"❌ Error: {e}")
 
-# ------------------ MAIN ------------------
 if __name__ == "__main__":
-    logger.info("Starting Travel Assistant in CLI mode...")
-    run_cli()
+    # Local CLI
+    try:
+        import asyncio
+        run_cli()
+    except Exception as e:
+        logger.exception("Failed to start CLI")
