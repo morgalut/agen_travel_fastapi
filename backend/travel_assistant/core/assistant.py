@@ -22,7 +22,8 @@ class TravelAssistant:
         logger.info("🚀 Initializing TravelAssistant...")
         print("[assistant] 🚀 Initializing TravelAssistant...")
 
-        self.llm_api_url = llm_api_url
+        self.llm_api_url = os.getenv("LLM_API_URL", "http://localhost:11434/api/generate")
+
         self.model = model
         self.prompt_engine = PromptEngine()
         self.conversation_manager = ConversationManager()

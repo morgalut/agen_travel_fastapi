@@ -1,41 +1,48 @@
-# Dockerfile (backend)
+# travel_assistant/backend/Dockerfile
 FROM python:3.12-slim
 
+# Prevent Python from writing .pyc files, force stdout flush
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
-# System deps (curl optional)
+# ------------------ System Deps ------------------
 RUN apt-get update \
- && apt-get install -y --no-install-recommends curl \
+ && apt-get install -y --no-install-recommends curl ca-certificates \
  && rm -rf /var/lib/apt/lists/*
 
-# Create user
+# ------------------ Install Ollama ------------------
+RUN curl -fsSL https://ollama.com/download/ollama-linux-amd64.tgz \
+  | tar -xz -C /usr/local/bin
+
+# ------------------ Create Non-Root User ------------------
 RUN groupadd -g 1000 appuser && useradd -m -u 1000 -g 1000 appuser
 
+# ------------------ Working Dir ------------------
 WORKDIR /app
 
-# Install deps
+# ------------------ Python Deps ------------------
 COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy app code
+# ------------------ App Code ------------------
 COPY backend/ ./
 
-# Prepare common writable dirs; some clouds mount rootfs read-only for the code layer,
-# so we create a tmp logs dir as a fallback and chown /app in case we can write.
+# ------------------ Logging Setup ------------------
 RUN mkdir -p /app/logs /tmp/app-logs \
  && chown -R 1000:1000 /app /tmp/app-logs
 
-# Drop privileges
+# ------------------ Switch User ------------------
 USER appuser
 
-# Expose port (cloud platforms ignore EXPOSE but nice for docs)
-EXPOSE 8000
+# ------------------ Ports ------------------
+EXPOSE 8000 11434
 
-# Default env – you can override in cloud
+# ------------------ Default Env ------------------
 ENV LOG_DIR=/app/logs \
     HOST=0.0.0.0 \
-    PORT=8000
+    PORT=8000 \
+    LLM_API_URL=http://localhost:11434/api/generate
 
-# Start
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# ------------------ Start Both Ollama + FastAPI ------------------
+CMD ollama serve & \
+    uvicorn main:app --host 0.0.0.0 --port 8000
