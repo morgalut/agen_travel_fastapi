@@ -11,11 +11,13 @@ import logging
 import traceback
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware   # ✅ CORS middleware
 from travel_assistant.router import routes_assistant
 from travel_assistant.utils.helpers import format_response
 
 # ------------------ Logging Setup ------------------
-LOG_DIR = "/var/log/app"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+LOG_DIR = os.path.join(BASE_DIR, "logs")  # ./backend/logs
 os.makedirs(LOG_DIR, exist_ok=True)
 
 logging.basicConfig(
@@ -30,6 +32,21 @@ logger = logging.getLogger("travel_assistant.main")
 
 # ------------------ FASTAPI APP ------------------
 app = FastAPI(title="Travel Assistant API")
+
+# ✅ Enable CORS
+origins = [
+    "http://localhost:3000",  # e.g. Next.js frontend
+    "http://127.0.0.1:3000",
+    "*"  # allow all origins (you can restrict this later)
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,          # list of allowed origins
+    allow_credentials=True,
+    allow_methods=["*"],            # allow all HTTP methods
+    allow_headers=["*"],            # allow all headers
+)
 
 # ✅ Register routers
 app.include_router(routes_assistant.router, prefix="/assistant", tags=["assistant"])
