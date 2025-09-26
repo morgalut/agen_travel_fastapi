@@ -1,4 +1,6 @@
 # travel_assistant/docker-compose.yml
+version: "3.9"
+
 services:
   ollama:
     image: ollama/ollama:latest
@@ -6,18 +8,10 @@ services:
     ports:
       - "11434:11434"
     volumes:
-      - ollama_data:/root/.ollama:rw
-    restart: unless-stopped
+      - ollama_data:/root/.ollama
     environment:
       - OLLAMA_HOST=0.0.0.0
-    healthcheck:
-      test: ["CMD", "ollama", "list"]
-      interval: 30s
-      timeout: 10s
-      retries: 15
-      start_period: 60s
-    security_opt:
-      - no-new-privileges:true
+    restart: unless-stopped
 
   travel_assistant:
     build:
@@ -25,35 +19,16 @@ services:
       dockerfile: Dockerfile
     container_name: travel_assistant
     depends_on:
-      ollama:
-        condition: service_healthy
+      - ollama
     ports:
       - "8000:8000"
     env_file:
       - ./backend/.env
     volumes:
-      - ./backend:/app:ro               # code read-only
-      - travel_assistant_logs:/var/log/app   # logs go here
+      - ./backend:/app
     working_dir: /app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     restart: unless-stopped
-    command: >
-      sh -c "uvicorn main:app
-            --host 0.0.0.0
-            --port 8000
-            --workers 4"
-    security_opt:
-      - no-new-privileges:true
-    read_only: true
-    tmpfs:
-      - /tmp
-    user: "1000:1000"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/docs"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 20s
 
 volumes:
   ollama_data:
-  travel_assistant_logs:

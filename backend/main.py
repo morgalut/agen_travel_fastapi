@@ -8,21 +8,46 @@ Supports both:
 
 import os
 import logging
-from fastapi import FastAPI
+import traceback
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 from travel_assistant.router import routes_assistant
 from travel_assistant.utils.helpers import format_response
 
 # ------------------ Logging Setup ------------------
+LOG_DIR = "/var/log/app"
+os.makedirs(LOG_DIR, exist_ok=True)
+
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    handlers=[
+        logging.StreamHandler(),  # stdout (docker logs)
+        logging.FileHandler(os.path.join(LOG_DIR, "app.log"))  # persistent file
+    ]
 )
 logger = logging.getLogger("travel_assistant.main")
 
 # ------------------ FASTAPI APP ------------------
 app = FastAPI(title="Travel Assistant API")
+
+# ✅ Register routers
 app.include_router(routes_assistant.router, prefix="/assistant", tags=["assistant"])
 logger.info("🚀 FastAPI app initialized. Router /assistant mounted.")
+
+# ✅ Global Exception Handler
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    tb = traceback.format_exc()
+    logger.error("❌ Unhandled error during request", exc_info=True)
+    return JSONResponse(
+        status_code=500,
+        content={
+            "error": str(exc),
+            "traceback": tb.splitlines()[-5:],  # last 5 lines for debug
+            "path": str(request.url)
+        }
+    )
 
 # ------------------ CLI MODE ------------------
 def clear_screen():
@@ -80,7 +105,6 @@ def run_cli():
             logger.info(f"Received user input: {user_input}")
 
             if not user_input:
-                logger.debug("Empty input ignored.")
                 continue
 
             if user_input.lower() in ['quit', 'exit', 'bye']:
@@ -95,23 +119,17 @@ def run_cli():
             elif user_input.lower() == 'summary':
                 summary = assistant.get_conversation_summary()
                 print(f"\n📊 Conversation Summary:\n{summary}")
-                logger.info("Displayed conversation summary.")
                 continue
 
             elif user_input.lower() == 'clear':
                 clear_screen()
                 print_banner()
                 print("🔮 Assistant: Conversation cleared! How can I help you now?")
-                logger.info("Conversation cleared.")
                 continue
 
             # Generate and display response
             print("\n🤖 Thinking...")
-            logger.info("Processing input with TravelAssistant...")
             response = assistant.generate_response(user_input)
-            logger.debug(f"Raw assistant response: {response[:200]}")
-
-            print("\r" + " " * 50 + "\r", end="")  # Clear thinking message
 
             formatted_response = format_response(response)
             print(f"🔮 Assistant: {formatted_response}")

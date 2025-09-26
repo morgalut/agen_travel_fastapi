@@ -21,7 +21,11 @@ uvicorn main:app --reload --port 8000
 
 ---
 
-
+# If you want docker 
+```sh
+sudo docker compose up -d --build
+```
+---
 
 ## 🧪 How to run & test
 
