@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"   # Ollama API
+    volumes:
+      - ollama_data:/root/.ollama   # persist models
+    restart: unless-stopped
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/version"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  travel_assistant:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: travel_assistant
+    depends_on:
+      ollama:
+        condition: service_healthy
+    ports:
+      - "8000:8000"   # FastAPI
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    restart: unless-stopped
+    command: >
+      sh -c "uvicorn travel_assistant.main:app
+             --host 0.0.0.0
+             --port 8000
+             --reload"
+
+volumes:
+  ollama_data:
