@@ -1,7 +1,11 @@
 # travel_assistant/core/prompt_engine.py
 import json
-from typing import Dict, List, Any
+import logging
+from typing import Dict, Any
 from dataclasses import dataclass
+
+# Setup logger
+logger = logging.getLogger(__name__)
 
 @dataclass
 class PromptTemplate:
@@ -10,15 +14,22 @@ class PromptTemplate:
     user_prompt: str
     chain_of_thought: bool = False
 
+
 class PromptEngine:
     """Engine for managing and optimizing prompts"""
     
     def __init__(self):
+        logger.info("🛠️ Initializing PromptEngine...")
+        print("[prompt_engine] 🛠️ Initializing PromptEngine...")
         self.templates = self._initialize_templates()
         self.conversation_history = []
-    
+        logger.info("✅ PromptEngine ready with templates loaded")
+        print("[prompt_engine] ✅ Templates loaded successfully")
+
     def _initialize_templates(self) -> Dict[str, PromptTemplate]:
         """Initialize prompt templates for different query types"""
+        logger.debug("Loading default prompt templates...")
+        print("[prompt_engine] 📦 Loading default prompt templates...")
         return {
             "destination_recommendation": PromptTemplate(
                 system_prompt=(
@@ -75,13 +86,20 @@ class PromptEngine:
     
     def build_prompt(self, query_type: str, **kwargs) -> Dict[str, str]:
         """Build a complete prompt for the LLM"""
+        logger.info(f"📝 Building prompt for query_type={query_type}")
+        print(f"[prompt_engine] 📝 Building prompt for query_type={query_type}")
+
         template = self.templates.get(query_type)
         if not template:
+            logger.warning(f"⚠️ Unknown query_type={query_type}, defaulting to destination_recommendation")
+            print(f"[prompt_engine] ⚠️ Unknown type={query_type}, using default")
             template = self.templates["destination_recommendation"]
         
         # Format the user prompt with provided kwargs
         formatted_user_prompt = template.user_prompt.format(**kwargs)
-        
+        logger.debug(f"User prompt length: {len(formatted_user_prompt)}")
+        print(f"[prompt_engine] ✅ Prompt built, length={len(formatted_user_prompt)}")
+
         return {
             "system": template.system_prompt,
             "user": formatted_user_prompt,
@@ -90,13 +108,19 @@ class PromptEngine:
     
     def add_to_history(self, role: str, content: str):
         """Add message to conversation history"""
+        logger.info(f"💬 Adding to history: role={role}")
+        print(f"[prompt_engine] 💬 History updated: {role} says {content[:50]}...")
         self.conversation_history.append({"role": role, "content": content})
         
         # Keep only last 10 messages to manage context length
         if len(self.conversation_history) > 10:
+            logger.debug("Trimming conversation history to last 10 messages")
+            print("[prompt_engine] ✂️ Trimming history to last 10 messages")
             self.conversation_history = self.conversation_history[-10:]
     
     def get_recent_history(self, max_messages: int = 5) -> str:
         """Get recent conversation history as formatted string"""
+        logger.debug(f"Fetching last {max_messages} messages from history")
+        print(f"[prompt_engine] 📜 Returning last {max_messages} history entries")
         recent = self.conversation_history[-max_messages:] if self.conversation_history else []
         return "\n".join([f"{msg['role']}: {msg['content']}" for msg in recent])

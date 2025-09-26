@@ -4,8 +4,8 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 ollama serve
 
-ollama run llama2
-
+ollama pull phi3:mini
+ollama run phi3:mini 
 ```
 ----
 # Install 
