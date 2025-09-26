@@ -1,3 +1,427 @@
 2025-09-27 00:47:09,386 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
 2025-09-27 00:47:14,125 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
 2025-09-27 00:55:11,092 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:00:52,053 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:04:30,961 [INFO] travel_assistant.core.assistant: 📝 Generating response for: What attractions should I see while in Paris?
+2025-09-27 01:04:30,962 [INFO] travel_assistant.core.conversation: 📌 Classifying query: What attractions should I see while in Paris?
+2025-09-27 01:04:30,963 [INFO] travel_assistant.core.conversation: ✅ Classified as ATTRACTIONS
+2025-09-27 01:04:30,963 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: What attractions should I see while in Paris?
+2025-09-27 01:04:30,965 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'Paris', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None}
+2025-09-27 01:04:30,965 [INFO] travel_assistant.core.conversation: 🗂️ Updating conversation context...
+2025-09-27 01:04:30,965 [INFO] travel_assistant.core.conversation: ✅ Context updated: {'current_topic': 'local_attractions', 'destination': 'Paris'}
+2025-09-27 01:04:30,965 [INFO] travel_assistant.core.assistant: 🧭 Running targeted queries...
+2025-09-27 01:04:30,966 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 01:04:32,274 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 01:04:32,276 [INFO] travel_assistant.services.weather_service: 🌦️ Fetching daily forecast lat=48.85341, lon=2.3488, days=7
+2025-09-27 01:04:33,586 [INFO] travel_assistant.services.country_service: 🌍 Fetching country info for: Paris
+2025-09-27 01:04:33,586 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 01:04:34,373 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 01:04:36,013 [INFO] travel_assistant.services.country_service: ✅ Country info retrieved successfully for France
+2025-09-27 01:04:36,013 [INFO] travel_assistant.core.prompt_engine: 📝 Building prompt for query_type=local_attractions
+2025-09-27 01:04:36,014 [INFO] travel_assistant.core.assistant: 🤖 Calling LLM...
+2025-09-27 01:04:36,015 [WARNING] urllib3.connectionpool: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77da36e83740>: Failed to establish a new connection: [Errno 111] Connection refused')': /api/generate
+2025-09-27 01:04:36,015 [ERROR] travel_assistant.core.assistant: 🔌 LLM connection error
+2025-09-27 01:04:36,016 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=user
+2025-09-27 01:04:36,016 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=assistant
+2025-09-27 01:07:48,814 [INFO] travel_assistant.core.assistant: 📝 Generating response for: What attractions should I see while in Paris?
+2025-09-27 01:07:48,815 [INFO] travel_assistant.core.conversation: 📌 Classifying query: What attractions should I see while in Paris?
+2025-09-27 01:07:48,815 [INFO] travel_assistant.core.conversation: ✅ Classified as ATTRACTIONS
+2025-09-27 01:07:48,815 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: What attractions should I see while in Paris?
+2025-09-27 01:07:48,815 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'Paris', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None}
+2025-09-27 01:07:48,816 [INFO] travel_assistant.core.conversation: 🗂️ Updating conversation context...
+2025-09-27 01:07:48,816 [INFO] travel_assistant.core.conversation: ✅ Context updated: {'current_topic': 'local_attractions', 'destination': 'Paris', 'previous_topic': 'local_attractions'}
+2025-09-27 01:07:48,816 [INFO] travel_assistant.core.assistant: 🧭 Running targeted queries...
+2025-09-27 01:07:48,816 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 01:07:49,871 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 01:07:49,873 [INFO] travel_assistant.services.weather_service: 🌦️ Fetching daily forecast lat=48.85341, lon=2.3488, days=7
+2025-09-27 01:07:51,185 [INFO] travel_assistant.services.country_service: 🌍 Fetching country info for: Paris
+2025-09-27 01:07:51,186 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 01:07:51,992 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 01:07:53,483 [INFO] travel_assistant.services.country_service: ✅ Country info retrieved successfully for France
+2025-09-27 01:07:53,485 [INFO] travel_assistant.core.prompt_engine: 📝 Building prompt for query_type=local_attractions
+2025-09-27 01:07:53,486 [INFO] travel_assistant.core.assistant: 🤖 Calling LLM...
+2025-09-27 01:07:53,488 [WARNING] urllib3.connectionpool: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77da36e83650>: Failed to establish a new connection: [Errno 111] Connection refused')': /api/generate
+2025-09-27 01:07:53,489 [ERROR] travel_assistant.core.assistant: 🔌 LLM connection error
+2025-09-27 01:07:53,489 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=user
+2025-09-27 01:07:53,489 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=assistant
+2025-09-27 01:10:35,001 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:12:38,161 [INFO] travel_assistant.core.assistant: 📝 Generating response for: What attractions should I see while in Paris?
+2025-09-27 01:12:38,162 [INFO] travel_assistant.core.conversation: 📌 Classifying query: What attractions should I see while in Paris?
+2025-09-27 01:12:38,164 [INFO] travel_assistant.core.conversation: ✅ Classified as ATTRACTIONS
+2025-09-27 01:12:38,165 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: What attractions should I see while in Paris?
+2025-09-27 01:12:38,168 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'Paris', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None}
+2025-09-27 01:12:38,169 [INFO] travel_assistant.core.conversation: 🗂️ Updating conversation context...
+2025-09-27 01:12:38,169 [INFO] travel_assistant.core.conversation: ✅ Context updated: {'current_topic': 'local_attractions', 'destination': 'Paris'}
+2025-09-27 01:12:38,169 [INFO] travel_assistant.core.assistant: 🧭 Running targeted queries...
+2025-09-27 01:12:38,170 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 01:12:39,487 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 01:12:39,489 [INFO] travel_assistant.services.weather_service: 🌦️ Fetching daily forecast lat=48.85341, lon=2.3488, days=7
+2025-09-27 01:12:40,826 [INFO] travel_assistant.services.country_service: 🌍 Fetching country info for: Paris
+2025-09-27 01:12:40,827 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 01:12:41,625 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 01:12:43,521 [INFO] travel_assistant.services.country_service: ✅ Country info retrieved successfully for France
+2025-09-27 01:12:43,523 [INFO] travel_assistant.core.prompt_engine: 📝 Building prompt for query_type=local_attractions
+2025-09-27 01:12:43,524 [INFO] travel_assistant.core.assistant: 🤖 Calling LLM...
+2025-09-27 01:12:43,526 [WARNING] urllib3.connectionpool: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7c3799717e90>: Failed to establish a new connection: [Errno 111] Connection refused')': /api/generate
+2025-09-27 01:12:43,527 [ERROR] travel_assistant.core.assistant: 🔌 LLM connection error
+2025-09-27 01:12:43,527 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=user
+2025-09-27 01:12:43,527 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=assistant
+2025-09-27 01:13:20,360 [INFO] travel_assistant.core.assistant: 📝 Generating response for: How many days to be in Paris?
+2025-09-27 01:13:20,360 [INFO] travel_assistant.core.conversation: 📌 Classifying query: How many days to be in Paris?
+2025-09-27 01:13:20,362 [INFO] travel_assistant.core.conversation: ℹ️ Classified as GENERAL
+2025-09-27 01:13:20,363 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: How many days to be in Paris?
+2025-09-27 01:13:20,363 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'Paris', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None}
+2025-09-27 01:13:20,363 [INFO] travel_assistant.core.conversation: 🗂️ Updating conversation context...
+2025-09-27 01:13:20,364 [INFO] travel_assistant.core.conversation: ✅ Context updated: {'current_topic': 'general', 'destination': 'Paris', 'previous_topic': 'local_attractions'}
+2025-09-27 01:13:20,364 [INFO] travel_assistant.core.assistant: 🧭 Running targeted queries...
+2025-09-27 01:13:20,364 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 01:13:21,256 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 01:13:21,258 [INFO] travel_assistant.services.weather_service: 🌦️ Fetching daily forecast lat=48.85341, lon=2.3488, days=7
+2025-09-27 01:13:22,066 [INFO] travel_assistant.services.country_service: 🌍 Fetching country info for: Paris
+2025-09-27 01:13:22,068 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 01:13:22,901 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 01:13:24,858 [INFO] travel_assistant.services.country_service: ✅ Country info retrieved successfully for France
+2025-09-27 01:13:24,860 [INFO] travel_assistant.core.prompt_engine: 📝 Building prompt for query_type=general
+2025-09-27 01:13:24,860 [WARNING] travel_assistant.core.prompt_engine: ⚠️ Unknown query_type=general, defaulting to destination_recommendation
+2025-09-27 01:13:24,860 [INFO] travel_assistant.core.assistant: 🤖 Calling LLM...
+2025-09-27 01:13:24,862 [WARNING] urllib3.connectionpool: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7c3799717380>: Failed to establish a new connection: [Errno 111] Connection refused')': /api/generate
+2025-09-27 01:13:24,863 [ERROR] travel_assistant.core.assistant: 🔌 LLM connection error
+2025-09-27 01:13:24,863 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=user
+2025-09-27 01:13:24,863 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=assistant
+2025-09-27 01:14:05,061 [INFO] travel_assistant.core.assistant: 📝 Generating response for: I want to be in Paris for vacation and don't know where to start. Can you recommend where to start or guide me?
+2025-09-27 01:14:05,061 [INFO] travel_assistant.core.conversation: 📌 Classifying query: I want to be in Paris for vacation and don't know where to start. Can you recommend where to start or guide me?
+2025-09-27 01:14:05,063 [INFO] travel_assistant.core.conversation: ℹ️ Classified as GENERAL
+2025-09-27 01:14:05,063 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: I want to be in Paris for vacation and don't know where to start. Can you recommend where to start or guide me?
+2025-09-27 01:14:05,063 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'Paris', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None}
+2025-09-27 01:14:05,064 [INFO] travel_assistant.core.conversation: 🗂️ Updating conversation context...
+2025-09-27 01:14:05,064 [INFO] travel_assistant.core.conversation: ✅ Context updated: {'current_topic': 'general', 'destination': 'Paris', 'previous_topic': 'general'}
+2025-09-27 01:14:05,064 [INFO] travel_assistant.core.assistant: 🧭 Running targeted queries...
+2025-09-27 01:14:05,064 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 01:14:06,392 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 01:14:06,395 [INFO] travel_assistant.services.weather_service: 🌦️ Fetching daily forecast lat=48.85341, lon=2.3488, days=7
+2025-09-27 01:14:07,334 [INFO] travel_assistant.services.country_service: 🌍 Fetching country info for: Paris
+2025-09-27 01:14:07,336 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 01:14:08,131 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 01:14:09,701 [INFO] travel_assistant.services.country_service: ✅ Country info retrieved successfully for France
+2025-09-27 01:14:09,705 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=user
+2025-09-27 01:14:09,705 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=assistant
+2025-09-27 01:20:18,217 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:20:20,544 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:20:27,147 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:20:30,338 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:20:32,607 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:20:49,042 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:20:51,112 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:22:36,739 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:22:46,382 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:23:12,025 [INFO] travel_assistant.core.assistant: 📝 Generating response for: What attractions should I see while in Paris?
+2025-09-27 01:23:12,026 [INFO] travel_assistant.core.conversation: 📌 Classifying query: What attractions should I see while in Paris?
+2025-09-27 01:23:12,029 [INFO] travel_assistant.core.conversation: ✅ Classified as ATTRACTIONS
+2025-09-27 01:23:12,029 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: What attractions should I see while in Paris?
+2025-09-27 01:23:12,032 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'Paris', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None}
+2025-09-27 01:23:33,214 [INFO] travel_assistant.core.assistant: 📝 Generating response for: More restaurants
+2025-09-27 01:23:33,214 [INFO] travel_assistant.core.conversation: 📌 Classifying query: More restaurants
+2025-09-27 01:23:33,215 [INFO] travel_assistant.core.conversation: ℹ️ Classified as GENERAL
+2025-09-27 01:23:33,215 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: More restaurants
+2025-09-27 01:23:33,216 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'More', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None}
+2025-09-27 01:23:33,216 [INFO] travel_assistant.core.conversation: 🗂️ Updating conversation context...
+2025-09-27 01:23:33,216 [INFO] travel_assistant.core.conversation: ✅ Context updated: {'current_topic': 'general', 'destination': 'More'}
+2025-09-27 01:23:33,216 [INFO] travel_assistant.core.assistant: 🧭 Running targeted queries...
+2025-09-27 01:23:33,216 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: More
+2025-09-27 01:23:34,570 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: More → {'lat': 19.70078, 'lon': -101.18443, 'name': 'Morelia', 'country': 'Mexico', 'country_code': 'MX'}
+2025-09-27 01:23:34,573 [INFO] travel_assistant.services.weather_service: 🌦️ Fetching daily forecast lat=19.70078, lon=-101.18443, days=7
+2025-09-27 01:23:35,919 [INFO] travel_assistant.services.country_service: 🌍 Fetching country info for: More
+2025-09-27 01:23:35,921 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: More
+2025-09-27 01:23:36,798 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: More → {'lat': 19.70078, 'lon': -101.18443, 'name': 'Morelia', 'country': 'Mexico', 'country_code': 'MX'}
+2025-09-27 01:23:38,317 [INFO] travel_assistant.services.country_service: ✅ Country info retrieved successfully for Mexico
+2025-09-27 01:23:38,319 [INFO] travel_assistant.core.prompt_engine: 📝 Building prompt for query_type=general
+2025-09-27 01:23:38,320 [WARNING] travel_assistant.core.prompt_engine: ⚠️ Unknown query_type=general, defaulting to destination_recommendation
+2025-09-27 01:23:38,321 [INFO] travel_assistant.core.assistant: 🤖 Calling LLM...
+2025-09-27 01:23:38,323 [WARNING] urllib3.connectionpool: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7e92f7aaf740>: Failed to establish a new connection: [Errno 111] Connection refused')': /api/generate
+2025-09-27 01:23:38,325 [ERROR] travel_assistant.core.assistant: 🔌 LLM connection error
+2025-09-27 01:23:38,325 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=user
+2025-09-27 01:23:38,325 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=assistant
+2025-09-27 01:23:38,325 [INFO] travel_assistant.core.assistant: 🤖 Calling LLM...
+2025-09-27 01:23:38,327 [WARNING] urllib3.connectionpool: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7e92f7aafd70>: Failed to establish a new connection: [Errno 111] Connection refused')': /api/generate
+2025-09-27 01:23:38,329 [ERROR] travel_assistant.core.assistant: 🔌 LLM connection error
+2025-09-27 01:26:15,946 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:26:23,862 [INFO] travel_assistant.core.assistant: 📝 Generating response for: What attractions should I see while in Paris?
+2025-09-27 01:26:23,863 [INFO] travel_assistant.core.conversation: 📌 Classifying query: What attractions should I see while in Paris?
+2025-09-27 01:26:23,865 [INFO] travel_assistant.core.conversation: ✅ Classified as ATTRACTIONS
+2025-09-27 01:26:23,865 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: What attractions should I see while in Paris?
+2025-09-27 01:26:23,868 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'Paris', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None}
+2025-09-27 01:26:38,170 [INFO] travel_assistant.core.assistant: 📝 Generating response for: More restaurants
+2025-09-27 01:26:38,171 [INFO] travel_assistant.core.conversation: 📌 Classifying query: More restaurants
+2025-09-27 01:26:38,172 [INFO] travel_assistant.core.conversation: ℹ️ Classified as GENERAL
+2025-09-27 01:26:38,172 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: More restaurants
+2025-09-27 01:26:38,173 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'More', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None}
+2025-09-27 01:26:38,173 [INFO] travel_assistant.core.conversation: 🗂️ Updating conversation context...
+2025-09-27 01:26:38,174 [INFO] travel_assistant.core.conversation: ✅ Context updated: {'current_topic': 'general', 'destination': 'More'}
+2025-09-27 01:26:38,174 [INFO] travel_assistant.core.assistant: 🧭 Running targeted queries...
+2025-09-27 01:26:38,174 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: More
+2025-09-27 01:26:38,984 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: More → {'lat': 19.70078, 'lon': -101.18443, 'name': 'Morelia', 'country': 'Mexico', 'country_code': 'MX'}
+2025-09-27 01:26:38,986 [INFO] travel_assistant.services.weather_service: 🌦️ Fetching daily forecast lat=19.70078, lon=-101.18443, days=7
+2025-09-27 01:26:40,350 [INFO] travel_assistant.services.country_service: 🌍 Fetching country info for: More
+2025-09-27 01:26:40,351 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: More
+2025-09-27 01:26:41,171 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: More → {'lat': 19.70078, 'lon': -101.18443, 'name': 'Morelia', 'country': 'Mexico', 'country_code': 'MX'}
+2025-09-27 01:26:42,798 [INFO] travel_assistant.services.country_service: ✅ Country info retrieved successfully for Mexico
+2025-09-27 01:26:42,801 [INFO] travel_assistant.core.prompt_engine: 📝 Building prompt for query_type=general
+2025-09-27 01:26:42,802 [WARNING] travel_assistant.core.prompt_engine: ⚠️ Unknown query_type=general, defaulting to destination_recommendation
+2025-09-27 01:26:42,802 [INFO] travel_assistant.core.assistant: 🤖 Calling LLM...
+2025-09-27 01:27:27,849 [ERROR] travel_assistant.core.assistant: ⏰ LLM timeout after 45.0s
+2025-09-27 01:27:27,850 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=user
+2025-09-27 01:27:27,850 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=assistant
+2025-09-27 01:27:27,850 [INFO] travel_assistant.core.assistant: 🤖 Calling LLM...
+2025-09-27 01:27:42,051 [INFO] travel_assistant.core.assistant: ✅ LLM responded in 14.20s
+2025-09-27 01:31:57,043 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:31:59,784 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:32:07,401 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:32:13,859 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:32:33,117 [INFO] travel_assistant.core.assistant: 📝 Generating response for: What attractions should I see while in Paris?
+2025-09-27 01:32:33,118 [INFO] travel_assistant.core.conversation: 📌 Classifying query: What attractions should I see while in Paris?
+2025-09-27 01:32:33,121 [INFO] travel_assistant.core.conversation: ✅ Classified as ATTRACTIONS
+2025-09-27 01:32:33,121 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: What attractions should I see while in Paris?
+2025-09-27 01:32:33,124 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'Paris', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None}
+2025-09-27 01:32:33,125 [INFO] travel_assistant.core.conversation: 🗂️ Updating conversation context...
+2025-09-27 01:32:33,125 [INFO] travel_assistant.core.conversation: ✅ Context updated: {'current_topic': 'local_attractions', 'destination': 'Paris'}
+2025-09-27 01:32:33,125 [INFO] travel_assistant.core.assistant: 🧭 Running targeted queries...
+2025-09-27 01:32:33,125 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 01:32:35,247 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 01:32:35,250 [INFO] travel_assistant.services.weather_service: 🌦️ Fetching daily forecast lat=48.85341, lon=2.3488, days=7
+2025-09-27 01:32:36,591 [INFO] travel_assistant.services.country_service: 🌍 Fetching country info for: Paris
+2025-09-27 01:32:36,592 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 01:32:37,422 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 01:32:39,358 [INFO] travel_assistant.services.country_service: ✅ Country info retrieved successfully for France
+2025-09-27 01:32:39,360 [INFO] travel_assistant.core.prompt_engine: 📝 Building prompt for query_type=local_attractions
+2025-09-27 01:32:39,361 [INFO] travel_assistant.core.assistant: 🤖 Calling LLM...
+2025-09-27 01:33:24,407 [ERROR] travel_assistant.core.assistant: ⏰ LLM timeout after 45.0s
+2025-09-27 01:33:24,408 [INFO] travel_assistant.core.assistant: 🤖 Calling LLM...
+2025-09-27 01:33:50,615 [INFO] travel_assistant.core.assistant: ✅ LLM responded in 26.21s
+2025-09-27 01:33:50,616 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=user
+2025-09-27 01:33:50,617 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=assistant
+2025-09-27 01:42:19,814 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:42:32,849 [ERROR] travel_assistant.main: ❌ Unhandled error during request
+Traceback (most recent call last):
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/starlette/routing.py", line 78, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/starlette/routing.py", line 75, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/fastapi/routing.py", line 308, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/fastapi/routing.py", line 221, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/starlette/concurrency.py", line 38, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 2485, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/anyio/_backends/_asyncio.py", line 976, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/travel_assistant/backend/travel_assistant/router/routes_assistant.py", line 34, in ask_travel_assistant
+    formatted_answer = format_response(raw_result.get("answer", ""))
+                                       ^^^^^^^^^^^^^^
+AttributeError: 'coroutine' object has no attribute 'get'
+2025-09-27 01:44:00,361 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:44:09,774 [INFO] travel_assistant.core.conversation: 📌 Classifying query: What attractions should I see while in Paris?
+2025-09-27 01:44:09,777 [INFO] travel_assistant.core.conversation: ✅ Classified as ATTRACTIONS
+2025-09-27 01:44:09,777 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: What attractions should I see while in Paris?
+2025-09-27 01:44:09,781 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'Paris', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None}
+2025-09-27 01:44:09,781 [INFO] travel_assistant.core.conversation: 🗂️ Updating conversation context...
+2025-09-27 01:44:09,781 [INFO] travel_assistant.core.conversation: ✅ Context updated: {'current_topic': 'local_attractions', 'destination': 'Paris'}
+2025-09-27 01:44:09,781 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 01:44:11,203 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 01:45:13,913 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:45:20,914 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:45:33,573 [INFO] travel_assistant.core.conversation: 📌 Classifying query: What attractions should I see while in Paris?
+2025-09-27 01:45:33,574 [INFO] travel_assistant.core.conversation: ✅ Classified as ATTRACTIONS
+2025-09-27 01:45:33,574 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: What attractions should I see while in Paris?
+2025-09-27 01:45:33,577 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'Paris', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None}
+2025-09-27 01:45:33,577 [INFO] travel_assistant.core.conversation: 🗂️ Updating conversation context...
+2025-09-27 01:45:33,578 [INFO] travel_assistant.core.conversation: ✅ Context updated: {'current_topic': 'local_attractions', 'destination': 'Paris'}
+2025-09-27 01:45:33,579 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 01:45:34,427 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 01:45:34,430 [INFO] travel_assistant.services.weather_service: 🌦️ Fetching daily forecast lat=48.85341, lon=2.3488, days=7
+2025-09-27 01:45:35,744 [INFO] travel_assistant.services.country_service: 🌍 Fetching country info for: Paris
+2025-09-27 01:45:35,746 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 01:45:36,549 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 01:45:38,526 [INFO] travel_assistant.services.country_service: ✅ Country info retrieved successfully for France
+2025-09-27 01:45:38,528 [INFO] travel_assistant.core.prompt_engine: 📝 Building prompt for query_type=local_attractions
+2025-09-27 01:46:26,299 [INFO] travel_assistant.core.conversation: 📌 Classifying query: How many days do I need to visit all these attractions?
+2025-09-27 01:46:26,300 [INFO] travel_assistant.core.conversation: ✅ Classified as ATTRACTIONS
+2025-09-27 01:46:26,302 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: How many days do I need to visit all these attractions?
+2025-09-27 01:46:26,305 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'How', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None}
+2025-09-27 01:46:26,306 [INFO] travel_assistant.core.conversation: 🗂️ Updating conversation context...
+2025-09-27 01:46:26,307 [INFO] travel_assistant.core.conversation: ✅ Context updated: {'current_topic': 'local_attractions', 'destination': 'How', 'previous_topic': 'local_attractions'}
+2025-09-27 01:46:26,307 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: How
+2025-09-27 01:46:27,118 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: How → {'lat': 54.90025, 'lon': -2.76874, 'name': 'How', 'country': 'United Kingdom', 'country_code': 'GB'}
+2025-09-27 01:46:27,121 [INFO] travel_assistant.services.weather_service: 🌦️ Fetching daily forecast lat=54.90025, lon=-2.76874, days=7
+2025-09-27 01:46:28,444 [INFO] travel_assistant.services.country_service: 🌍 Fetching country info for: How
+2025-09-27 01:46:28,446 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: How
+2025-09-27 01:46:29,240 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: How → {'lat': 54.90025, 'lon': -2.76874, 'name': 'How', 'country': 'United Kingdom', 'country_code': 'GB'}
+2025-09-27 01:46:30,852 [INFO] travel_assistant.services.country_service: ✅ Country info retrieved successfully for United Kingdom
+2025-09-27 01:46:30,856 [INFO] travel_assistant.core.prompt_engine: 📝 Building prompt for query_type=local_attractions
+2025-09-27 01:52:59,119 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:53:03,202 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:54:31,366 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:55:07,367 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:55:55,951 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:56:02,062 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:56:14,297 [INFO] travel_assistant.core.conversation: 📌 Classifying query: What attractions should I see while in Paris?
+2025-09-27 01:56:14,299 [INFO] travel_assistant.core.conversation: ✅ Classified as ATTRACTIONS
+2025-09-27 01:56:14,300 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: What attractions should I see while in Paris?
+2025-09-27 01:56:14,303 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'Paris', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None}
+2025-09-27 01:56:14,304 [INFO] travel_assistant.core.conversation: 🗂️ Updating conversation context...
+2025-09-27 01:56:14,304 [INFO] travel_assistant.core.conversation: ✅ Context updated: {'current_topic': 'local_attractions', 'destination': 'Paris'}
+2025-09-27 01:56:14,306 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 01:56:15,627 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 01:56:15,632 [INFO] travel_assistant.services.weather_service: 🌦️ Fetching daily forecast lat=48.85341, lon=2.3488, days=7
+2025-09-27 01:56:16,957 [INFO] travel_assistant.services.country_service: 🌍 Fetching country info for: Paris
+2025-09-27 01:56:16,958 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 01:56:17,739 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 01:56:19,247 [INFO] travel_assistant.services.country_service: ✅ Country info retrieved successfully for France
+2025-09-27 01:58:26,818 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 01:58:39,235 [INFO] travel_assistant.core.assistant: 📝 Generating response for: What attractions should I see while in Paris?
+2025-09-27 01:58:39,235 [INFO] travel_assistant.core.conversation: 📌 Classifying query: What attractions should I see while in Paris?
+2025-09-27 01:58:39,238 [INFO] travel_assistant.core.conversation: ✅ Classified as ATTRACTIONS
+2025-09-27 01:58:39,238 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: What attractions should I see while in Paris?
+2025-09-27 01:58:39,242 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'Paris', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None}
+2025-09-27 01:58:39,242 [INFO] travel_assistant.core.conversation: 🗂️ Updating conversation context...
+2025-09-27 01:58:39,243 [INFO] travel_assistant.core.conversation: ✅ Context updated: {'current_topic': 'local_attractions', 'destination': 'Paris'}
+2025-09-27 01:58:39,245 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 01:58:40,064 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 01:58:40,068 [INFO] travel_assistant.services.weather_service: 🌦️ Fetching daily forecast lat=48.85341, lon=2.3488, days=7
+2025-09-27 01:58:40,870 [INFO] travel_assistant.services.country_service: 🌍 Fetching country info for: Paris
+2025-09-27 01:58:40,872 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 01:58:41,732 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 01:58:43,449 [INFO] travel_assistant.services.country_service: ✅ Country info retrieved successfully for France
+2025-09-27 01:58:43,452 [INFO] travel_assistant.core.prompt_engine: 📝 Building prompt for query_type=local_attractions
+2025-09-27 01:59:03,605 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=user
+2025-09-27 01:59:03,605 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=assistant
+2025-09-27 01:59:32,449 [INFO] travel_assistant.core.assistant: 📝 Generating response for: How many days to go through all the attractions you gave?
+2025-09-27 01:59:32,449 [INFO] travel_assistant.core.conversation: 📌 Classifying query: How many days to go through all the attractions you gave?
+2025-09-27 01:59:32,449 [INFO] travel_assistant.core.conversation: ✅ Classified as ATTRACTIONS
+2025-09-27 01:59:32,449 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: How many days to go through all the attractions you gave?
+2025-09-27 01:59:32,450 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'How', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None}
+2025-09-27 01:59:32,450 [INFO] travel_assistant.core.conversation: 🗂️ Updating conversation context...
+2025-09-27 01:59:32,450 [INFO] travel_assistant.core.conversation: ✅ Context updated: {'current_topic': 'local_attractions', 'destination': 'How', 'previous_topic': 'local_attractions'}
+2025-09-27 01:59:58,113 [INFO] travel_assistant.core.assistant: 📝 Generating response for: What else do you recommend?
+2025-09-27 01:59:58,114 [INFO] travel_assistant.core.conversation: 📌 Classifying query: What else do you recommend?
+2025-09-27 01:59:58,114 [INFO] travel_assistant.core.conversation: ℹ️ Classified as GENERAL
+2025-09-27 01:59:58,115 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: What else do you recommend?
+2025-09-27 01:59:58,115 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'What', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None}
+2025-09-27 01:59:58,115 [INFO] travel_assistant.core.conversation: 🗂️ Updating conversation context...
+2025-09-27 01:59:58,115 [INFO] travel_assistant.core.conversation: ✅ Context updated: {'current_topic': 'general', 'destination': 'What', 'previous_topic': 'local_attractions'}
+2025-09-27 01:59:58,115 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: What
+2025-09-27 01:59:59,422 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: What → {'lat': 42.43981, 'lon': -72.63481, 'name': 'Whately', 'country': 'United States', 'country_code': 'US'}
+2025-09-27 01:59:59,425 [INFO] travel_assistant.services.weather_service: 🌦️ Fetching daily forecast lat=42.43981, lon=-72.63481, days=7
+2025-09-27 02:00:01,600 [INFO] travel_assistant.services.country_service: 🌍 Fetching country info for: What
+2025-09-27 02:00:01,600 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: What
+2025-09-27 02:00:02,404 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: What → {'lat': 42.43981, 'lon': -72.63481, 'name': 'Whately', 'country': 'United States', 'country_code': 'US'}
+2025-09-27 02:00:04,119 [INFO] travel_assistant.services.country_service: ✅ Country info retrieved successfully for United States
+2025-09-27 02:00:04,124 [INFO] travel_assistant.core.prompt_engine: 📝 Building prompt for query_type=general
+2025-09-27 02:00:04,125 [WARNING] travel_assistant.core.prompt_engine: ⚠️ Unknown query_type=general, defaulting to destination_recommendation
+2025-09-27 02:00:24,260 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=user
+2025-09-27 02:00:24,260 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=assistant
+2025-09-27 02:01:29,911 [INFO] travel_assistant.core.assistant: 📝 Generating response for: Looking for recommended restaurants in Germany? Want to go on a five-day vacation? Ask which hotels are an option and what activities you can do there.
+2025-09-27 02:01:29,912 [INFO] travel_assistant.core.conversation: 📌 Classifying query: Looking for recommended restaurants in Germany? Want to go on a five-day vacation? Ask which hotels are an option and what activities you can do there.
+2025-09-27 02:01:29,913 [INFO] travel_assistant.core.conversation: ✅ Classified as ATTRACTIONS
+2025-09-27 02:01:29,913 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: Looking for recommended restaurants in Germany? Want to go on a five-day vacation? Ask which hotels are an option and what activities you can do there.
+2025-09-27 02:01:29,913 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'Germany', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None}
+2025-09-27 02:01:29,913 [INFO] travel_assistant.core.conversation: 🗂️ Updating conversation context...
+2025-09-27 02:01:29,914 [INFO] travel_assistant.core.conversation: ✅ Context updated: {'current_topic': 'local_attractions', 'destination': 'Germany', 'previous_topic': 'general'}
+2025-09-27 02:01:29,914 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Germany
+2025-09-27 02:01:31,223 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Germany → {'lat': 51.5, 'lon': 10.5, 'name': 'Germany', 'country': 'Germany', 'country_code': 'DE'}
+2025-09-27 02:01:31,226 [INFO] travel_assistant.services.weather_service: 🌦️ Fetching daily forecast lat=51.5, lon=10.5, days=7
+2025-09-27 02:01:32,532 [INFO] travel_assistant.services.country_service: 🌍 Fetching country info for: Germany
+2025-09-27 02:01:32,533 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Germany
+2025-09-27 02:01:33,326 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Germany → {'lat': 51.5, 'lon': 10.5, 'name': 'Germany', 'country': 'Germany', 'country_code': 'DE'}
+2025-09-27 02:01:34,948 [INFO] travel_assistant.services.country_service: ✅ Country info retrieved successfully for Germany
+2025-09-27 02:01:34,950 [INFO] travel_assistant.core.prompt_engine: 📝 Building prompt for query_type=local_attractions
+2025-09-27 02:01:55,008 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=user
+2025-09-27 02:01:55,008 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=assistant
+2025-09-27 02:09:19,271 [INFO] travel_assistant.core.assistant: 📝 Generating response for: Which hotels are recommended?
+2025-09-27 02:09:19,271 [INFO] travel_assistant.core.conversation: 📌 Classifying query: Which hotels are recommended?
+2025-09-27 02:09:19,272 [INFO] travel_assistant.core.conversation: ℹ️ Classified as GENERAL
+2025-09-27 02:09:19,272 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: Which hotels are recommended?
+2025-09-27 02:09:19,273 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'Which', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None}
+2025-09-27 02:09:19,274 [INFO] travel_assistant.core.conversation: 🗂️ Updating conversation context...
+2025-09-27 02:09:19,275 [INFO] travel_assistant.core.conversation: ✅ Context updated: {'current_topic': 'general', 'destination': 'Which', 'previous_topic': 'local_attractions'}
+2025-09-27 02:09:19,275 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Which
+2025-09-27 02:09:21,351 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Which → {'lat': 54.23203, 'lon': -3.32671, 'name': 'Whicham', 'country': 'United Kingdom', 'country_code': 'GB'}
+2025-09-27 02:09:21,353 [INFO] travel_assistant.services.weather_service: 🌦️ Fetching daily forecast lat=54.23203, lon=-3.32671, days=7
+2025-09-27 02:09:22,657 [INFO] travel_assistant.services.country_service: 🌍 Fetching country info for: Which
+2025-09-27 02:09:22,658 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Which
+2025-09-27 02:09:23,446 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Which → {'lat': 54.23203, 'lon': -3.32671, 'name': 'Whicham', 'country': 'United Kingdom', 'country_code': 'GB'}
+2025-09-27 02:09:25,120 [INFO] travel_assistant.services.country_service: ✅ Country info retrieved successfully for United Kingdom
+2025-09-27 02:09:25,127 [INFO] travel_assistant.core.prompt_engine: 📝 Building prompt for query_type=general
+2025-09-27 02:09:25,128 [WARNING] travel_assistant.core.prompt_engine: ⚠️ Unknown query_type=general, defaulting to destination_recommendation
+2025-09-27 02:09:45,214 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=user
+2025-09-27 02:09:45,215 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=assistant
+2025-09-27 02:10:12,566 [INFO] travel_assistant.core.assistant: 📝 Generating response for: Need a place to sleep? Where are some recommended places?
+2025-09-27 02:10:12,567 [INFO] travel_assistant.core.conversation: 📌 Classifying query: Need a place to sleep? Where are some recommended places?
+2025-09-27 02:10:12,569 [INFO] travel_assistant.core.conversation: ℹ️ Classified as GENERAL
+2025-09-27 02:10:12,570 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: Need a place to sleep? Where are some recommended places?
+2025-09-27 02:10:12,572 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'Where', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None}
+2025-09-27 02:10:12,572 [INFO] travel_assistant.core.conversation: 🗂️ Updating conversation context...
+2025-09-27 02:10:12,572 [INFO] travel_assistant.core.conversation: ✅ Context updated: {'current_topic': 'general', 'destination': 'Where', 'previous_topic': 'general'}
+2025-09-27 02:10:12,572 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Where
+2025-09-27 02:10:13,450 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Where → {'lat': 40.34304, 'lon': -105.62417, 'name': 'Steep Mountain', 'country': 'United States', 'country_code': 'US'}
+2025-09-27 02:10:13,458 [INFO] travel_assistant.services.weather_service: 🌦️ Fetching daily forecast lat=40.34304, lon=-105.62417, days=7
+2025-09-27 02:10:14,825 [INFO] travel_assistant.services.country_service: 🌍 Fetching country info for: Where
+2025-09-27 02:10:14,826 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Where
+2025-09-27 02:10:15,646 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Where → {'lat': 40.34304, 'lon': -105.62417, 'name': 'Steep Mountain', 'country': 'United States', 'country_code': 'US'}
+2025-09-27 02:10:17,295 [INFO] travel_assistant.services.country_service: ✅ Country info retrieved successfully for United States
+2025-09-27 02:10:17,297 [INFO] travel_assistant.core.prompt_engine: 📝 Building prompt for query_type=general
+2025-09-27 02:10:17,297 [WARNING] travel_assistant.core.prompt_engine: ⚠️ Unknown query_type=general, defaulting to destination_recommendation
+2025-09-27 02:10:37,413 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=user
+2025-09-27 02:10:37,414 [INFO] travel_assistant.core.prompt_engine: 💬 Adding to history: role=assistant
+2025-09-27 02:30:27,232 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 02:31:45,264 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 02:32:30,889 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 02:33:12,148 [INFO] travel_assistant.core.assistant: 📝 Generating response for: Need a place to sleep? Where are some recommended places?
+2025-09-27 02:33:12,148 [INFO] travel_assistant.core.conversation: 📌 Classifying query: Need a place to sleep? Where are some recommended places?
+2025-09-27 02:33:12,149 [INFO] travel_assistant.core.conversation: ✅ Classified as ACCOMMODATION
+2025-09-27 02:33:12,150 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: Need a place to sleep? Where are some recommended places?
+2025-09-27 02:33:12,156 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'Where', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 02:33:12,157 [INFO] travel_assistant.core.conversation: 🗂️ Updating conversation context...
+2025-09-27 02:33:12,157 [INFO] travel_assistant.core.conversation: ✅ Context updated: {'current_topic': 'accommodation', 'destination': 'Where', 'accommodation_intent': True, 'last_accommodation_query': 'Need a place to sleep? Where are some recommended places?'}
+2025-09-27 02:33:12,159 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Where
+2025-09-27 02:33:13,477 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Where → {'lat': 40.34304, 'lon': -105.62417, 'name': 'Steep Mountain', 'country': 'United States', 'country_code': 'US'}
+2025-09-27 02:33:13,480 [INFO] travel_assistant.services.weather_service: 🌦️ Fetching daily forecast lat=40.34304, lon=-105.62417, days=7
+2025-09-27 02:33:14,816 [INFO] travel_assistant.services.country_service: 🏨 Fetching hotels near 40.34304,-105.62417
+2025-09-27 02:33:17,792 [INFO] travel_assistant.services.country_service: ✅ Found 0 hotels
+2025-09-27 02:33:17,795 [INFO] travel_assistant.services.country_service: 🌍 Fetching country info for: Where
+2025-09-27 02:33:17,796 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Where
+2025-09-27 02:33:18,585 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Where → {'lat': 40.34304, 'lon': -105.62417, 'name': 'Steep Mountain', 'country': 'United States', 'country_code': 'US'}
+2025-09-27 02:33:20,284 [INFO] travel_assistant.services.country_service: ✅ Country info retrieved successfully for United States
+2025-09-27 02:33:20,286 [INFO] travel_assistant.core.prompt_engine: 📝 Building prompt for query_type=accommodation

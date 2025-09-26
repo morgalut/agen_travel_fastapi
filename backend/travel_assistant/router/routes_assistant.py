@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from typing import Optional, Dict, Any
 
@@ -20,7 +20,7 @@ class QueryResponse(BaseModel):
 
 # ------------------ Endpoints ------------------
 @router.post("/ask", response_model=QueryResponse)
-def ask_travel_assistant(request: QueryRequest):
+async def ask_travel_assistant(request: QueryRequest) -> QueryResponse:
     """
     Main endpoint to ask the travel assistant a question.
     Returns:
@@ -28,22 +28,28 @@ def ask_travel_assistant(request: QueryRequest):
     - followup: optional follow-up question to guide the user
     - context: current conversation state
     """
-    raw_result = assistant.generate_response(request.text)
+    try:
+        # ✅ Await the coroutine
+        raw_result = await assistant.generate_response(request.text)
 
-    # Format only the "answer" part (packing list, destination recs, etc.)
-    formatted_answer = format_response(raw_result.get("answer", ""))
+        # ✅ Format only the "answer" part
+        formatted_answer = format_response(raw_result.get("answer", ""))
 
-    return QueryResponse(
-        answer=formatted_answer,
-        followup=raw_result.get("followup"),
-        context=raw_result.get("context", {})
-    )
-
+        return QueryResponse(
+            answer=formatted_answer,
+            followup=raw_result.get("followup"),
+            context=raw_result.get("context", {})
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Assistant error: {str(e)}")
 
 @router.get("/summary")
-def get_summary():
+async def get_summary() -> Dict[str, Any]:
     """
     Get the current conversation summary and context.
     Useful for debugging or for UI components to show history.
     """
-    return {"summary": assistant.get_conversation_summary()}
+    try:
+        return {"summary": assistant.get_conversation_summary()}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Summary error: {str(e)}")
