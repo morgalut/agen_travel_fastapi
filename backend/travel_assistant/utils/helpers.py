@@ -8,33 +8,37 @@ from typing import Optional, Dict, Any
 logger = logging.getLogger(__name__)
 
 
-def geocode_location(city: str) -> Optional[Dict[str, float]]:
-    """Convert a city name to latitude/longitude using Nominatim (OpenStreetMap)."""
-    logger.info(f"🌍 Geocoding request for city: {city}")
-    print(f"[helpers] 🌍 Looking up coordinates for: {city}")
 
-    url = "https://nominatim.openstreetmap.org/search"
-    params = {"q": city, "format": "json", "limit": 1}
+def geocode_location(query: str):
+    """Forward geocode a place name and return lat/lon + country when available."""
+    logger.info(f"🌍 Geocoding request for city: {query}")
+    print(f"[helpers] 🌍 Looking up coordinates for: {query}")
 
     try:
-        resp = requests.get(url, params=params, headers={"User-Agent": "travel-assistant"}, timeout=10)
-        logger.debug(f"Geocode API call URL: {resp.url} | Status: {resp.status_code}")
-
-        if resp.ok and resp.json():
-            data = resp.json()[0]
-            coords = {"lat": float(data["lat"]), "lon": float(data["lon"])}
-            logger.info(f"✅ Geocode success: {city} → {coords}")
-            print(f"[helpers] ✅ Found coordinates for {city}: {coords}")
-            return coords
-
-        logger.warning(f"⚠️ Geocode: No results for {city}")
-        print(f"[helpers] ⚠️ No geocoding results for {city}")
+        r = requests.get(
+            "https://geocoding-api.open-meteo.com/v1/search",
+            params={"name": query, "count": 1, "language": "en", "format": "json"},
+            timeout=10,
+        )
+        r.raise_for_status()
+        js = r.json()
+        if js.get("results"):
+            res = js["results"][0]
+            data = {
+                "lat": res["latitude"],
+                "lon": res["longitude"],
+                "name": res.get("name"),
+                "country": res.get("country"),           # ✅ new
+                "country_code": res.get("country_code"), # ✅ new (ISO-2)
+            }
+            logger.info(f"✅ Geocode success: {query} → {data}")
+            print(f"[helpers] ✅ Found coordinates for {query}: {data}")
+            return data
         return None
-
     except Exception as e:
-        logger.error(f"❌ Geocode API error for {city}: {e}", exc_info=True)
-        print(f"[helpers] ❌ Error during geocoding for {city}: {e}")
+        logger.error(f"❌ Geocode error for {query}: {e}", exc_info=True)
         return None
+
 
 
 def format_response(response: str) -> str:
@@ -98,3 +102,22 @@ def load_conversation(filename: str) -> Dict[str, Any]:
         logger.error(f"❌ Failed to load conversation: {e}", exc_info=True)
         print(f"[helpers] ❌ Failed to load conversation: {e}")
         return {}
+
+
+def reverse_geocode_country(lat: float, lon: float):
+    """Reverse geocode to country and ISO code."""
+    try:
+        r = requests.get(
+            "https://nominatim.openstreetmap.org/reverse",
+            params={"format": "jsonv2", "lat": lat, "lon": lon, "zoom": 5, "addressdetails": 1},
+            headers={"User-Agent": "travel-assistant/1.0 (contact: you@example.com)"},
+            timeout=10,
+        )
+        r.raise_for_status()
+        js = r.json()
+        addr = js.get("address", {}) or {}
+        country = addr.get("country")
+        code = addr.get("country_code")
+        return {"country": country, "country_code": code.upper() if code else None} if country else None
+    except Exception:
+        return None

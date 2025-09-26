@@ -4,7 +4,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 
 ollama serve
 
-ollama pull phi3:mini
+ollama pull llama3.2:1b
 ollama run phi3:mini 
 ```
 ----
@@ -28,30 +28,27 @@ uvicorn main:app --reload --port 8000
 Run the API:
 
 ```bash
-uvicorn travel_assistant.main:app --reload --port 8000
-```
-
-Test packing with real weather (triggers geocode → Open-Meteo):
-
-```bash
+# 1. First question
 curl -s -X POST "http://127.0.0.1:8000/assistant/ask" \
   -H "Content-Type: application/json" \
   -d '{"text": "What should I pack for a 5-day trip to Paris in winter?"}' | jq
-```
 
-Test destination recs (concise bullets):
-
-```bash
+# 2. Continue without repeating context
 curl -s -X POST "http://127.0.0.1:8000/assistant/ask" \
   -H "Content-Type: application/json" \
-  -d '{"text": "I have $2000 and love food & museums. Where should I go in Europe?"}' | jq
-```
+  -d '{"text": "What should I wear if I also go to a fancy dinner?"}' | jq
 
-Check summary:
+# 3. Ask another topic
+curl -s -X POST "http://127.0.0.1:8000/assistant/ask" \
+  -H "Content-Type: application/json" \
+  -d '{"text": "What attractions should I see while in Paris?"}' | jq
 
-```bash
+# 4. Inspect memory
 curl -s "http://127.0.0.1:8000/assistant/summary" | jq
+
 ```
 
 ---
+לבדוק משכיות ולבדוקת איפוס 
+לשפר דיבור ושיחה 
 
