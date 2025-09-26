@@ -1,18 +1,26 @@
+# travel_assistant/backend/Dockerfile
 FROM python:3.12-slim
 
 WORKDIR /app
 
-# System deps
-RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl \
+    && rm -rf /var/lib/apt/lists/*
 
-# Python deps
+# Create non-root user
+RUN groupadd -g 1000 appuser && \
+    useradd -m -u 1000 -g 1000 appuser
+
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy app
 COPY . .
 
-# Expose FastAPI port
+# ✅ prepare logs directory in writable volume
+RUN mkdir -p /var/log/app && chown -R 1000:1000 /var/log/app
+
+USER appuser
+
 EXPOSE 8000
 
-CMD ["uvicorn", "travel_assistant.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
