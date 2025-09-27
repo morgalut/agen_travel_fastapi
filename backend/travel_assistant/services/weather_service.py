@@ -1,4 +1,5 @@
 # travel_assistant/services/weather_service.py
+from datetime import time
 import requests
 import logging
 from typing import Optional, Dict, Any, List
@@ -24,53 +25,80 @@ def _code_text(code: int) -> str:
 
 
 class WeatherService:
-    """Service for fetching free weather & climate data using Open-Meteo"""
+    """Service for fetching free weather & climate data using Open-Meteo."""
 
-    def __init__(self, base_url: str = "https://api.open-meteo.com/v1/forecast"):
-        self.base_url = base_url
+    def __init__(self):
+        self.base_urls = [
+            "https://api.open-meteo.com/v1/forecast",
+            "https://api.open-meteo.net/v1/forecast",
+            "https://api.open-meteo.org/v1/forecast",
+        ]
+
+    # ---------------- HELPER ----------------
+    def _fetch_with_retries(self, url: str, params: Dict[str, Any], max_retries: int = 3) -> Optional[Dict[str, Any]]:
+        timeout = 10
+        for attempt in range(max_retries):
+            try:
+                resp = requests.get(url, params=params, timeout=timeout)
+                resp.raise_for_status()
+                return resp.json()
+            except requests.exceptions.Timeout:
+                logger.warning(f" Weather API timeout (attempt {attempt+1}/{max_retries}, url={url})")
+                time.sleep(1.5 * (attempt + 1))  # backoff
+                timeout += 5
+            except Exception as e:
+                logger.warning(f" Weather API error on {url}: {e}")
+                break
+        return None
 
     # ---------------- DAILY FORECAST ----------------
     def get_weather_forecast(self, latitude: float, longitude: float, days: int = 7) -> Optional[Dict[str, Any]]:
         logger.info(f" Fetching daily forecast lat={latitude}, lon={longitude}, days={days}")
-        print(f"[weather_service]  Daily forecast request for {days} days")
+        params = {
+            "latitude": latitude,
+            "longitude": longitude,
+            "daily": "temperature_2m_max,temperature_2m_min,precipitation_sum,weathercode",
+            "current_weather": True,
+            "forecast_days": days,
+            "timezone": "auto"
+        }
 
-        try:
-            params = {
-                "latitude": latitude,
-                "longitude": longitude,
-                "daily": "temperature_2m_max,temperature_2m_min,precipitation_sum,weathercode",
-                "current_weather": True,
-                "forecast_days": days,
-                "timezone": "auto"
-            }
-            resp = requests.get(self.base_url, params=params, timeout=12)
-            resp.raise_for_status()
-            data = resp.json()
+        for base_url in self.base_urls:
+            data = self._fetch_with_retries(base_url, params)
+            if not data:
+                continue
 
-            forecast = [
-                {
-                    "date": data["daily"]["time"][i],
-                    "max_temp": data["daily"]["temperature_2m_max"][i],
-                    "min_temp": data["daily"]["temperature_2m_min"][i],
-                    "precipitation": data["daily"]["precipitation_sum"][i],
-                    "weathercode": data["daily"]["weathercode"][i],
-                    "condition": _code_text(data["daily"]["weathercode"][i]),
+            try:
+                forecast = [
+                    {
+                        "date": data["daily"]["time"][i],
+                        "max_temp": data["daily"]["temperature_2m_max"][i],
+                        "min_temp": data["daily"]["temperature_2m_min"][i],
+                        "precipitation": data["daily"]["precipitation_sum"][i],
+                        "weathercode": data["daily"]["weathercode"][i],
+                        "condition": _code_text(data["daily"]["weathercode"][i]),
+                    }
+                    for i in range(len(data["daily"]["time"]))
+                ]
+                return {
+                    "latitude": data["latitude"],
+                    "longitude": data["longitude"],
+                    "current_temp": data["current_weather"]["temperature"],
+                    "condition": _code_text(data["current_weather"]["weathercode"]),
+                    "forecast": forecast
                 }
-                for i in range(len(data["daily"]["time"]))
-            ]
+            except Exception as e:
+                logger.error(f" Failed to parse weather response from {base_url}: {e}", exc_info=True)
 
-            return {
-                "latitude": data["latitude"],
-                "longitude": data["longitude"],
-                "current_temp": data["current_weather"]["temperature"],
-                "condition": _code_text(data["current_weather"]["weathercode"]),
-                "forecast": forecast
-            }
-
-        except Exception as e:
-            logger.error(f" Daily forecast error: {e}", exc_info=True)
-            print(f"[weather_service]  Daily forecast error: {e}")
-            return None
+        # Fallback if all APIs failed
+        logger.error("All weather API attempts failed")
+        return {
+            "latitude": latitude,
+            "longitude": longitude,
+            "current_temp": None,
+            "condition": "Weather data unavailable",
+            "forecast": []
+        }
 
     # ---------------- HOURLY FORECAST ----------------
     def get_hourly_forecast(self, latitude: float, longitude: float, hours: int = 24) -> Optional[List[Dict[str, Any]]]:

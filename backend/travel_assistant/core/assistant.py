@@ -39,9 +39,11 @@ logger = logging.getLogger(__name__)
 class TravelAssistant:
     """Modular travel assistant with responders and layered fallback."""
 
-    def __init__(self, model: str = "gemma:2b"):
+    def __init__(self, model: Optional[str] = None):
         self.llm_api_url = os.getenv("LLM_API_URL", "http://localhost:11434/api/generate")
-        self.model = model
+        # Use env LLM_MODEL if provided, fallback to deepseek
+        self.model = model or os.getenv("LLM_MODEL", "deepseek:7b")
+
 
         self.prompt_engine = PromptEngine()
         self.conversation_manager = ConversationManager()

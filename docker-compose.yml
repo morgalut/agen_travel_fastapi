@@ -17,8 +17,8 @@ services:
           echo '⏳ Waiting for Ollama server...'
           sleep 5
         done
-        echo '⬇️ Pulling gemma:2b...'
-        ollama pull gemma:2b || true
+        echo '⬇️ Pulling deepseek:7b...'
+        ollama pull deepseek:7b || true
         wait -n
       "
     restart: unless-stopped
@@ -32,7 +32,7 @@ services:
       ollama:
         condition: service_started
     ports:
-      - "8000:8000"                        # backend available at localhost:8000 on host
+      - "8000:8000"
     env_file:
       - ./backend/.env
     environment:
@@ -59,11 +59,9 @@ services:
       travel_assistant:
         condition: service_healthy
     ports:
-      - "3000:3000"                        # frontend available at localhost:3000 on host
+      - "3000:3000"
     environment:
-      # Used by browser code (outside docker, user’s machine)
       - NEXT_PUBLIC_API_URL=http://localhost:8000
-      # Used by server-side rendering inside the frontend container
       - API_URL_SERVER=http://travel_assistant:8000
       - PORT=3000
     volumes:

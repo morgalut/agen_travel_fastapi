@@ -18,7 +18,8 @@ An intelligent travel planning assistant powered by LLaMA that helps you create 
 - Docker (optional)
 - Ollama
 
-### 1. Install Ollama & LLaMA Model
+```markdown
+### 1. Install Ollama & DeepSeek Model
 
 ```bash
 # Install Ollama
@@ -27,11 +28,10 @@ curl -fsSL https://ollama.com/install.sh | sh
 # Start Ollama server
 ollama serve
 
-# Download and run 
-ollama pull gemma:2b
-ollama run gemma:2b
+# Download and run DeepSeek (choose your variant, e.g., deepseek:7b)
+ollama pull deepseek:7b
+ollama run deepseek:7b
 ```
-
 ### 2. Install Dependencies
 
 ```bash
