@@ -3,3 +3,20 @@
 2025-09-27 02:40:20,428 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
 2025-09-27 02:50:38,637 [INFO] travel_assistant.main: 🗄️ Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
 2025-09-27 02:50:38,651 [INFO] travel_assistant.main: 🚀 FastAPI app initialized. Router /assistant mounted.
+2025-09-27 03:07:20,162 [INFO] travel_assistant.core.assistant: 📝 Generating response for: What attractions should I see while in Paris?
+2025-09-27 03:07:20,162 [INFO] travel_assistant.core.conversation: 📌 Classifying query: What attractions should I see while in Paris?
+2025-09-27 03:07:20,167 [INFO] travel_assistant.core.conversation: ✅ Classified as ATTRACTIONS
+2025-09-27 03:07:20,168 [INFO] travel_assistant.core.conversation: 🔎 Extracting entities from: What attractions should I see while in Paris?
+2025-09-27 03:07:20,174 [INFO] travel_assistant.core.conversation: ✅ Entities extracted: {'destination': 'Paris', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 03:07:20,175 [INFO] travel_assistant.core.conversation: 🗂️ Updating conversation context...
+2025-09-27 03:07:20,175 [INFO] travel_assistant.core.conversation: ✅ Context updated: {'current_topic': 'local_attractions', 'destination': 'Paris'}
+2025-09-27 03:07:20,178 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 03:07:21,545 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 03:07:21,548 [INFO] travel_assistant.services.weather_service: 🌦️ Fetching daily forecast lat=48.85341, lon=2.3488, days=7
+2025-09-27 03:07:22,871 [INFO] travel_assistant.services.country_service: 🏨 Fetching hotels near 48.85341,2.3488
+2025-09-27 03:07:24,232 [INFO] travel_assistant.services.country_service: ✅ Found 5 hotels
+2025-09-27 03:07:24,235 [INFO] travel_assistant.services.country_service: 🌍 Fetching country info for: Paris
+2025-09-27 03:07:24,237 [INFO] travel_assistant.utils.helpers: 🌍 Geocoding request for city: Paris
+2025-09-27 03:07:25,549 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 03:07:27,997 [INFO] travel_assistant.services.country_service: ✅ Country info retrieved successfully for France
+2025-09-27 03:07:28,000 [INFO] travel_assistant.core.prompt_engine: 📝 Building prompt for query_type=local_attractions

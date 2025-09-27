@@ -5,11 +5,17 @@ services:
     image: ollama/ollama:latest
     container_name: ollama
     ports:
-      - "11434:11434"              # expose LLM API
-    volumes:
-      - ollama_models:/root/.ollama  # persist models across restarts
+      - "11434:11434"                      # expose LLM API to host
     environment:
-      - OLLAMA_HOST=0.0.0.0        # allow remote access from FastAPI
+      - OLLAMA_HOST=0.0.0.0
+    volumes:
+      - ollama_models:/root/.ollama        # persist models
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:11434/api/tags"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 20s
     restart: unless-stopped
 
   travel_assistant:
@@ -18,17 +24,54 @@ services:
       dockerfile: Dockerfile
     container_name: travel_assistant
     depends_on:
-      - ollama
+      ollama:
+        condition: service_healthy
     ports:
-      - "8000:8000"                # FastAPI exposed
+      - "8000:8000"                        # FastAPI -> host
     env_file:
-      - ./backend/.env             # your app configs
+      - ./backend/.env
     environment:
       - LLM_API_URL=http://ollama:11434/api/generate
+      # CORS origin your Next.js dev URL on the host:
+      - CORS_ORIGINS=http://localhost:3000
     volumes:
-      - ./backend:/app             # live code reload in dev
+      - ./backend:/app                     # dev live-reload
     working_dir: /app
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/docs"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./Frontend
+      dockerfile: Dockerfile
+    container_name: travel_frontend
+    depends_on:
+      travel_assistant:
+        condition: service_healthy
+    ports:
+      - "3000:3000"                        # Next.js -> host
+    # Important: browsers need localhost; SSR can use service DNS
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000        # used by client/browser JS
+      - API_URL_SERVER=http://travel_assistant:8000      # used by SSR/server components
+      - PORT=3000
+    volumes:
+      - ./Frontend:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run dev
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:3000"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
     restart: unless-stopped
 
 volumes:
