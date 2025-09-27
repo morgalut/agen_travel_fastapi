@@ -27,12 +27,6 @@ services:
         # keep Ollama running as main process
         wait -n
       "
-    healthcheck:
-      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:11434/api/tags"]
-      interval: 15s
-      timeout: 10s
-      retries: 30
-      start_period: 120s
     restart: unless-stopped
 
   travel_assistant:
@@ -42,7 +36,7 @@ services:
     container_name: travel_assistant
     depends_on:
       ollama:
-        condition: service_healthy
+        condition: service_started
     ports:
       - "8000:8000"                        # FastAPI -> host
     env_file:
@@ -73,7 +67,9 @@ services:
     ports:
       - "3000:3000"
     environment:
+      # Used by browser client (outside Docker, hitting host machine)
       - NEXT_PUBLIC_API_URL=http://localhost:8000
+      # Used by frontend container (SSR / API calls inside Docker)
       - API_URL_SERVER=http://travel_assistant:8000
       - PORT=3000
     volumes:
