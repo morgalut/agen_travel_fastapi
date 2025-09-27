@@ -5,26 +5,20 @@ services:
     image: ollama/ollama:latest
     container_name: ollama
     ports:
-      - "11434:11434"             # expose LLM API to host
+      - "11434:11434"
     environment:
       - OLLAMA_HOST=0.0.0.0
     volumes:
-      - ollama_models:/root/.ollama   # persist models
+      - ollama_models:/root/.ollama
     entrypoint: >
       sh -c "
-        # start Ollama in background
         ollama serve &
-
-        # wait for Ollama API to come online
         until curl -fsS http://127.0.0.1:11434/api/tags >/dev/null 2>&1; do
           echo '⏳ Waiting for Ollama server...'
           sleep 5
         done
-
         echo '⬇️ Pulling gemma:2b...'
         ollama pull gemma:2b || true
-
-        # keep Ollama running as main process
         wait -n
       "
     restart: unless-stopped
@@ -38,14 +32,14 @@ services:
       ollama:
         condition: service_started
     ports:
-      - "8000:8000"                        # FastAPI -> host
+      - "8000:8000"                        # backend available at localhost:8000 on host
     env_file:
       - ./backend/.env
     environment:
       - LLM_API_URL=http://ollama:11434/api/generate
       - CORS_ORIGINS=http://localhost:3000
     volumes:
-      - ./backend:/app                     # dev live-reload
+      - ./backend:/app
     working_dir: /app
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     healthcheck:
@@ -65,11 +59,11 @@ services:
       travel_assistant:
         condition: service_healthy
     ports:
-      - "3000:3000"
+      - "3000:3000"                        # frontend available at localhost:3000 on host
     environment:
-      # Used by browser client (outside Docker, hitting host machine)
+      # Used by browser code (outside docker, user’s machine)
       - NEXT_PUBLIC_API_URL=http://localhost:8000
-      # Used by frontend container (SSR / API calls inside Docker)
+      # Used by server-side rendering inside the frontend container
       - API_URL_SERVER=http://travel_assistant:8000
       - PORT=3000
     volumes:

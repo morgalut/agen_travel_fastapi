@@ -15,7 +15,8 @@ class QueryType(Enum):
     BEST_TIME = "best_time"
     BUDGET = "budget"
     SAFETY = "safety"
-    VISA = "visa"                 
+    VISA = "visa"
+    ITINERARY = "itinerary"                  
     GENERAL = "general"
 
 # Proper nouns like "New York", "San Francisco"
@@ -48,6 +49,10 @@ class ConversationManager:
         print(f"[conversation] Classifying: {user_input}")
 
         text = user_input.lower()
+        if any(k in text for k in ["staying for", "i am staying", "for  "]) and \
+           any(k in text for k in ["in ", "from now", "days", "weeks"]) and \
+           any(k in text for k in ["hotel", "stay at a"]):
+            return QueryType.ITINERARY
 
         hotel_patterns = [
             r"\bhotel(s)?\b", r"\bhostel(s)?\b", r"\bguesthouse(s)?\b",
