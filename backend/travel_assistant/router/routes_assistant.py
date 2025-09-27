@@ -41,13 +41,20 @@ async def ask_travel_assistant(request: QueryRequest) -> QueryResponse:
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Assistant error: {str(e)}")
 
-@router.get("/summary")
-async def get_summary() -> Dict[str, Any]:
+
+
+
+@router.post("/reset")
+async def reset_conversation() -> Dict[str, Any]:
     """
-    Get the current conversation summary and context.
-    Useful for debugging or for UI components to show history.
+    Reset the assistant's conversation state.
+    Clears context and history so a new conversation can start.
     """
     try:
-        return {"summary": assistant.get_conversation_summary()}
+        assistant.conversation_manager.reset()
+        return {"ok": True, "message": "Conversation reset successfully."}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Summary error: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"Reset error: {str(e)}")
+

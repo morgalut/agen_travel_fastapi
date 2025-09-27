@@ -177,3 +177,532 @@
 2025-09-27 14:53:51,212 [INFO] travel_assistant.services.country_service:  Country info retrieved successfully for France
 2025-09-27 14:53:51,215 [INFO] travel_assistant.core.prompt_engine:  Building prompt for query_type=packing_suggestions
 2025-09-27 14:54:18,568 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-09-27 15:53:44,624 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 15:53:44,625 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 15:54:15,836 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 15:54:15,838 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 15:55:04,134 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 15:55:04,135 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 15:55:16,426 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 15:55:16,427 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 15:55:28,922 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 15:55:28,923 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 15:55:40,908 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 15:55:40,909 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 15:55:52,786 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 15:55:52,789 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:13:20,098 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:13:20,100 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:14:32,166 [INFO] travel_assistant.core.conversation:  Classifying query: What should I pack?
+2025-09-27 16:14:32,168 [INFO] travel_assistant.core.conversation:  Classified as PACKING
+2025-09-27 16:14:32,168 [INFO] travel_assistant.core.conversation:  Extracting entities from: What should I pack?
+2025-09-27 16:14:32,171 [INFO] travel_assistant.core.conversation:  Entities extracted: {'destination': None, 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 16:14:32,171 [INFO] travel_assistant.core.conversation:  Updating conversation context...
+2025-09-27 16:14:32,171 [INFO] travel_assistant.core.conversation:  Context updated: {'current_topic': 'packing_suggestions'}
+2025-09-27 16:14:32,176 [ERROR] travel_assistant.core.assistant: LLM error: All connection attempts failed
+2025-09-27 16:14:46,769 [INFO] travel_assistant.core.conversation:  Classifying query: What should I pack for a 5-day trip to Paris in winter?
+2025-09-27 16:14:46,770 [INFO] travel_assistant.core.conversation:  Classified as PACKING
+2025-09-27 16:14:46,770 [INFO] travel_assistant.core.conversation:  Extracting entities from: What should I pack for a 5-day trip to Paris in winter?
+2025-09-27 16:14:46,770 [INFO] travel_assistant.core.conversation:  Entities extracted: {'destination': 'Paris', 'duration': '5 day', 'budget': ' 5', 'interests': [], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 16:14:46,770 [INFO] travel_assistant.core.conversation:  Updating conversation context...
+2025-09-27 16:14:46,771 [INFO] travel_assistant.core.conversation:  Context updated: {'current_topic': 'packing_suggestions', 'previous_topic': 'packing_suggestions', 'destination': 'Paris', 'duration': '5 day', 'budget': ' 5'}
+2025-09-27 16:14:46,771 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Paris
+2025-09-27 16:14:48,088 [INFO] travel_assistant.utils.helpers:  Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 16:14:48,090 [INFO] travel_assistant.services.weather_service:  Fetching daily forecast lat=48.85341, lon=2.3488, days=7
+2025-09-27 16:14:49,397 [INFO] travel_assistant.services.hotel_service:  Fetching hotels near 48.85341,2.3488
+2025-09-27 16:14:52,212 [INFO] travel_assistant.services.hotel_service:  Found 5 hotels
+2025-09-27 16:14:52,215 [INFO] travel_assistant.services.country_service:  Fetching country info for: Paris
+2025-09-27 16:14:52,216 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Paris
+2025-09-27 16:14:53,021 [INFO] travel_assistant.utils.helpers:  Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 16:14:54,532 [INFO] travel_assistant.services.country_service:  Country info retrieved successfully for France
+2025-09-27 16:14:54,538 [ERROR] travel_assistant.core.assistant: LLM error: All connection attempts failed
+2025-09-27 16:15:19,384 [INFO] travel_assistant.core.conversation:  Classifying query: What are the top attractions in Rome?
+2025-09-27 16:15:19,385 [INFO] travel_assistant.core.conversation:  Classified as ATTRACTIONS
+2025-09-27 16:15:19,385 [INFO] travel_assistant.core.conversation:  Extracting entities from: What are the top attractions in Rome?
+2025-09-27 16:15:19,385 [INFO] travel_assistant.core.conversation:  Entities extracted: {'destination': 'Rome', 'duration': '5 day', 'budget': ' 5', 'interests': [], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 16:15:19,385 [INFO] travel_assistant.core.conversation:  Updating conversation context...
+2025-09-27 16:15:19,386 [INFO] travel_assistant.core.conversation:  Context updated: {'current_topic': 'local_attractions', 'previous_topic': 'packing_suggestions', 'destination': 'Rome', 'duration': '5 day', 'budget': ' 5'}
+2025-09-27 16:15:19,386 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Rome
+2025-09-27 16:15:20,178 [INFO] travel_assistant.utils.helpers:  Geocode success: Rome → {'lat': 41.89193, 'lon': 12.51133, 'name': 'Rome', 'country': 'Italy', 'country_code': 'IT'}
+2025-09-27 16:15:20,181 [INFO] travel_assistant.services.weather_service:  Fetching daily forecast lat=41.89193, lon=12.51133, days=7
+2025-09-27 16:15:21,067 [INFO] travel_assistant.services.hotel_service:  Fetching hotels near 41.89193,12.51133
+2025-09-27 16:15:22,301 [INFO] travel_assistant.services.hotel_service:  Found 5 hotels
+2025-09-27 16:15:22,304 [INFO] travel_assistant.services.country_service:  Fetching country info for: Rome
+2025-09-27 16:15:22,305 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Rome
+2025-09-27 16:15:23,105 [INFO] travel_assistant.utils.helpers:  Geocode success: Rome → {'lat': 41.89193, 'lon': 12.51133, 'name': 'Rome', 'country': 'Italy', 'country_code': 'IT'}
+2025-09-27 16:15:24,591 [INFO] travel_assistant.services.country_service:  Country info retrieved successfully for Italy
+2025-09-27 16:15:24,596 [ERROR] travel_assistant.core.assistant: LLM error: All connection attempts failed
+2025-09-27 16:15:42,047 [INFO] travel_assistant.core.conversation:  Classifying query: Find me a boutique place to stay in Barcelona near the center
+2025-09-27 16:15:42,047 [INFO] travel_assistant.core.conversation:  Classified as ACCOMMODATION
+2025-09-27 16:15:42,047 [INFO] travel_assistant.core.conversation:  Extracting entities from: Find me a boutique place to stay in Barcelona near the center
+2025-09-27 16:15:42,048 [INFO] travel_assistant.core.conversation:  Entities extracted: {'destination': 'Barcelona', 'duration': '5 day', 'budget': ' 5', 'interests': [], 'travel_dates': None, 'accommodation_type': 'boutique'}
+2025-09-27 16:15:42,048 [INFO] travel_assistant.core.conversation:  Updating conversation context...
+2025-09-27 16:15:42,048 [INFO] travel_assistant.core.conversation:  Context updated: {'current_topic': 'accommodation', 'previous_topic': 'local_attractions', 'destination': 'Barcelona', 'duration': '5 day', 'budget': ' 5', 'accommodation_type': 'boutique', 'accommodation_intent': True, 'last_accommodation_query': 'Find me a boutique place to stay in Barcelona near the center'}
+2025-09-27 16:15:42,048 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Barcelona
+2025-09-27 16:15:42,853 [INFO] travel_assistant.utils.helpers:  Geocode success: Barcelona → {'lat': 41.38879, 'lon': 2.15899, 'name': 'Barcelona', 'country': 'Spain', 'country_code': 'ES'}
+2025-09-27 16:15:42,856 [INFO] travel_assistant.services.weather_service:  Fetching daily forecast lat=41.38879, lon=2.15899, days=7
+2025-09-27 16:15:43,652 [INFO] travel_assistant.services.hotel_service:  Fetching hotels near 41.38879,2.15899
+2025-09-27 16:15:45,167 [INFO] travel_assistant.services.hotel_service:  Found 5 hotels
+2025-09-27 16:15:45,170 [INFO] travel_assistant.services.country_service:  Fetching country info for: Barcelona
+2025-09-27 16:15:45,171 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Barcelona
+2025-09-27 16:15:45,974 [INFO] travel_assistant.utils.helpers:  Geocode success: Barcelona → {'lat': 41.38879, 'lon': 2.15899, 'name': 'Barcelona', 'country': 'Spain', 'country_code': 'ES'}
+2025-09-27 16:15:47,576 [INFO] travel_assistant.services.country_service:  Country info retrieved successfully for Spain
+2025-09-27 16:15:47,582 [ERROR] travel_assistant.core.assistant: LLM error: All connection attempts failed
+2025-09-27 16:16:14,141 [INFO] travel_assistant.core.conversation:  Classifying query: I want a nature and beaches trip in October, any suggestions?
+2025-09-27 16:16:14,141 [INFO] travel_assistant.core.conversation:  Classified as DESTINATION
+2025-09-27 16:16:14,141 [INFO] travel_assistant.core.conversation:  Extracting entities from: I want a nature and beaches trip in October, any suggestions?
+2025-09-27 16:16:14,141 [INFO] travel_assistant.core.conversation:  Entities extracted: {'destination': 'October', 'duration': '5 day', 'budget': ' 5', 'interests': ['nature'], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 16:16:14,141 [INFO] travel_assistant.core.conversation:  Updating conversation context...
+2025-09-27 16:16:14,141 [INFO] travel_assistant.core.conversation:  Context updated: {'current_topic': 'destination_recommendation', 'previous_topic': 'accommodation', 'destination': 'October', 'duration': '5 day', 'budget': ' 5', 'accommodation_type': 'boutique', 'accommodation_intent': True, 'last_accommodation_query': 'Find me a boutique place to stay in Barcelona near the center', 'interests': ['nature']}
+2025-09-27 16:16:14,141 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: October
+2025-09-27 16:16:14,947 [INFO] travel_assistant.utils.helpers:  Geocode success: October → {'lat': 29.81187, 'lon': 30.82325, 'name': 'October', 'country': 'Egypt', 'country_code': 'EG'}
+2025-09-27 16:16:14,949 [INFO] travel_assistant.services.weather_service:  Fetching daily forecast lat=29.81187, lon=30.82325, days=7
+2025-09-27 16:16:15,755 [INFO] travel_assistant.services.hotel_service:  Fetching hotels near 29.81187,30.82325
+2025-09-27 16:16:17,045 [INFO] travel_assistant.services.hotel_service:  Found 0 hotels
+2025-09-27 16:16:17,048 [INFO] travel_assistant.services.country_service:  Fetching country info for: October
+2025-09-27 16:16:17,049 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: October
+2025-09-27 16:16:17,854 [INFO] travel_assistant.utils.helpers:  Geocode success: October → {'lat': 29.81187, 'lon': 30.82325, 'name': 'October', 'country': 'Egypt', 'country_code': 'EG'}
+2025-09-27 16:16:20,130 [INFO] travel_assistant.services.country_service:  Country info retrieved successfully for Egypt
+2025-09-27 16:16:20,136 [ERROR] travel_assistant.core.assistant: LLM error: All connection attempts failed
+2025-09-27 16:16:57,272 [INFO] travel_assistant.core.conversation:  Classifying query: What's the weather like in Tokyo in spring?
+2025-09-27 16:16:57,274 [INFO] travel_assistant.core.conversation:  Classified as GENERAL
+2025-09-27 16:16:57,274 [INFO] travel_assistant.core.conversation:  Extracting entities from: What's the weather like in Tokyo in spring?
+2025-09-27 16:16:57,275 [INFO] travel_assistant.core.conversation:  Entities extracted: {'destination': 'Tokyo', 'duration': '5 day', 'budget': ' 5', 'interests': ['nature'], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 16:16:57,275 [INFO] travel_assistant.core.conversation:  Updating conversation context...
+2025-09-27 16:16:57,275 [INFO] travel_assistant.core.conversation:  Context updated: {'current_topic': 'general', 'previous_topic': 'destination_recommendation', 'destination': 'Tokyo', 'duration': '5 day', 'budget': ' 5', 'accommodation_type': 'boutique', 'accommodation_intent': True, 'last_accommodation_query': 'Find me a boutique place to stay in Barcelona near the center', 'interests': ['nature']}
+2025-09-27 16:16:57,276 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Tokyo
+2025-09-27 16:16:58,069 [INFO] travel_assistant.utils.helpers:  Geocode success: Tokyo → {'lat': 35.6895, 'lon': 139.69171, 'name': 'Tokyo', 'country': 'Japan', 'country_code': 'JP'}
+2025-09-27 16:16:58,074 [INFO] travel_assistant.services.weather_service:  Fetching daily forecast lat=35.6895, lon=139.69171, days=7
+2025-09-27 16:16:59,003 [INFO] travel_assistant.services.hotel_service:  Fetching hotels near 35.6895,139.69171
+2025-09-27 16:17:00,182 [INFO] travel_assistant.services.hotel_service:  Found 5 hotels
+2025-09-27 16:17:00,187 [INFO] travel_assistant.services.country_service:  Fetching country info for: Tokyo
+2025-09-27 16:17:00,188 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Tokyo
+2025-09-27 16:17:01,053 [INFO] travel_assistant.utils.helpers:  Geocode success: Tokyo → {'lat': 35.6895, 'lon': 139.69171, 'name': 'Tokyo', 'country': 'Japan', 'country_code': 'JP'}
+2025-09-27 16:17:02,840 [INFO] travel_assistant.services.country_service:  Country info retrieved successfully for Japan
+2025-09-27 16:17:02,843 [ERROR] travel_assistant.core.assistant: LLM error: All connection attempts failed
+2025-09-27 16:20:22,884 [INFO] travel_assistant.core.conversation:  Classifying query: What's the weather like in Tokyo in spring?
+2025-09-27 16:20:22,885 [INFO] travel_assistant.core.conversation:  Classified as GENERAL
+2025-09-27 16:20:22,886 [INFO] travel_assistant.core.conversation:  Extracting entities from: What's the weather like in Tokyo in spring?
+2025-09-27 16:20:22,888 [INFO] travel_assistant.core.conversation:  Entities extracted: {'destination': 'Tokyo', 'duration': '5 day', 'budget': ' 5', 'interests': ['nature'], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 16:20:22,889 [INFO] travel_assistant.core.conversation:  Updating conversation context...
+2025-09-27 16:20:22,889 [INFO] travel_assistant.core.conversation:  Context updated: {'current_topic': 'general', 'previous_topic': 'general', 'destination': 'Tokyo', 'duration': '5 day', 'budget': ' 5', 'accommodation_type': 'boutique', 'accommodation_intent': True, 'last_accommodation_query': 'Find me a boutique place to stay in Barcelona near the center', 'interests': ['nature']}
+2025-09-27 16:20:22,889 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Tokyo
+2025-09-27 16:20:24,209 [INFO] travel_assistant.utils.helpers:  Geocode success: Tokyo → {'lat': 35.6895, 'lon': 139.69171, 'name': 'Tokyo', 'country': 'Japan', 'country_code': 'JP'}
+2025-09-27 16:20:24,222 [INFO] travel_assistant.services.weather_service:  Fetching daily forecast lat=35.6895, lon=139.69171, days=7
+2025-09-27 16:20:25,675 [INFO] travel_assistant.services.hotel_service:  Fetching hotels near 35.6895,139.69171
+2025-09-27 16:20:27,171 [INFO] travel_assistant.services.hotel_service:  Found 5 hotels
+2025-09-27 16:20:27,187 [INFO] travel_assistant.services.country_service:  Fetching country info for: Tokyo
+2025-09-27 16:20:27,199 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Tokyo
+2025-09-27 16:20:28,074 [INFO] travel_assistant.utils.helpers:  Geocode success: Tokyo → {'lat': 35.6895, 'lon': 139.69171, 'name': 'Tokyo', 'country': 'Japan', 'country_code': 'JP'}
+2025-09-27 16:20:29,897 [INFO] travel_assistant.services.country_service:  Country info retrieved successfully for Japan
+2025-09-27 16:20:29,913 [ERROR] travel_assistant.core.assistant: LLM error: All connection attempts failed
+2025-09-27 16:22:43,183 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:22:43,186 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:22:47,084 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:22:47,087 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:23:39,513 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:23:39,519 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:24:07,950 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:24:07,953 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:25:30,109 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:25:30,112 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:26:26,662 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:26:26,668 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:26:34,773 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:26:34,776 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:26:40,348 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:26:40,351 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:27:02,869 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:27:02,873 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:27:05,161 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:27:05,164 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:28:44,160 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:28:44,163 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:28:55,692 [INFO] travel_assistant.core.conversation: Classifying query: What's the weather like in Tokyo in spring?
+2025-09-27 16:28:55,692 [INFO] travel_assistant.core.conversation: Classified as WEATHER
+2025-09-27 16:28:55,692 [INFO] travel_assistant.core.conversation: Extracting entities from: What's the weather like in Tokyo in spring?
+2025-09-27 16:28:55,696 [INFO] travel_assistant.core.conversation: Entities extracted: {'destination': 'Tokyo', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 16:28:55,696 [INFO] travel_assistant.core.conversation: Updating conversation context...
+2025-09-27 16:28:55,697 [INFO] travel_assistant.core.conversation: Context updated: {'current_topic': 'weather', 'destination': 'Tokyo'}
+2025-09-27 16:28:55,698 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Tokyo
+2025-09-27 16:28:57,005 [INFO] travel_assistant.utils.helpers:  Geocode success: Tokyo → {'lat': 35.6895, 'lon': 139.69171, 'name': 'Tokyo', 'country': 'Japan', 'country_code': 'JP'}
+2025-09-27 16:28:57,009 [INFO] travel_assistant.services.weather_service:  Fetching daily forecast lat=35.6895, lon=139.69171, days=7
+2025-09-27 16:28:58,327 [INFO] travel_assistant.services.hotel_service:  Fetching hotels near 35.6895,139.69171
+2025-09-27 16:28:59,360 [INFO] travel_assistant.services.hotel_service:  Found 5 hotels
+2025-09-27 16:28:59,361 [INFO] travel_assistant.services.country_service:  Fetching country info for: Tokyo
+2025-09-27 16:28:59,362 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Tokyo
+2025-09-27 16:29:00,160 [INFO] travel_assistant.utils.helpers:  Geocode success: Tokyo → {'lat': 35.6895, 'lon': 139.69171, 'name': 'Tokyo', 'country': 'Japan', 'country_code': 'JP'}
+2025-09-27 16:29:01,772 [INFO] travel_assistant.services.country_service:  Country info retrieved successfully for Japan
+2025-09-27 16:29:01,782 [ERROR] travel_assistant.core.assistant: LLM error: All connection attempts failed
+2025-09-27 16:29:07,460 [INFO] travel_assistant.core.conversation: Classifying query: Best time to visit Bali for surfing?
+2025-09-27 16:29:07,463 [INFO] travel_assistant.core.conversation: Classified as GENERAL
+2025-09-27 16:29:07,463 [INFO] travel_assistant.core.conversation: Extracting entities from: Best time to visit Bali for surfing?
+2025-09-27 16:29:07,463 [INFO] travel_assistant.core.conversation: Entities extracted: {'destination': 'Bali', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 16:29:07,463 [INFO] travel_assistant.core.conversation: Updating conversation context...
+2025-09-27 16:29:07,463 [INFO] travel_assistant.core.conversation: Context updated: {'current_topic': 'general', 'destination': 'Bali', 'previous_topic': 'weather'}
+2025-09-27 16:29:07,463 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Bali
+2025-09-27 16:29:08,256 [INFO] travel_assistant.utils.helpers:  Geocode success: Bali → {'lat': 22.64859, 'lon': 88.34115, 'name': 'Bāli', 'country': 'India', 'country_code': 'IN'}
+2025-09-27 16:29:08,258 [INFO] travel_assistant.services.weather_service:  Fetching daily forecast lat=22.64859, lon=88.34115, days=7
+2025-09-27 16:29:09,054 [INFO] travel_assistant.services.hotel_service:  Fetching hotels near 22.64859,88.34115
+2025-09-27 16:29:09,994 [INFO] travel_assistant.services.hotel_service:  Found 2 hotels
+2025-09-27 16:29:09,996 [INFO] travel_assistant.services.country_service:  Fetching country info for: Bali
+2025-09-27 16:29:09,996 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Bali
+2025-09-27 16:29:10,802 [INFO] travel_assistant.utils.helpers:  Geocode success: Bali → {'lat': 22.64859, 'lon': 88.34115, 'name': 'Bāli', 'country': 'India', 'country_code': 'IN'}
+2025-09-27 16:29:12,270 [INFO] travel_assistant.services.country_service:  Country info retrieved successfully for India
+2025-09-27 16:29:12,274 [ERROR] travel_assistant.core.assistant: LLM error: All connection attempts failed
+2025-09-27 16:29:42,996 [INFO] travel_assistant.core.conversation: Classifying query: How much should I budget for a week in Europe?
+2025-09-27 16:29:42,997 [INFO] travel_assistant.core.conversation: Classified as GENERAL
+2025-09-27 16:29:42,999 [INFO] travel_assistant.core.conversation: Extracting entities from: How much should I budget for a week in Europe?
+2025-09-27 16:29:43,000 [INFO] travel_assistant.core.conversation: Entities extracted: {'destination': 'Europe', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 16:29:43,000 [INFO] travel_assistant.core.conversation: Updating conversation context...
+2025-09-27 16:29:43,000 [INFO] travel_assistant.core.conversation: Context updated: {'current_topic': 'general', 'destination': 'Europe', 'previous_topic': 'general'}
+2025-09-27 16:29:43,001 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Europe
+2025-09-27 16:29:43,789 [INFO] travel_assistant.utils.helpers:  Geocode success: Europe → {'lat': 48.69096, 'lon': 9.14062, 'name': 'Europe', 'country': None, 'country_code': None}
+2025-09-27 16:29:43,791 [INFO] travel_assistant.services.weather_service:  Fetching daily forecast lat=48.69096, lon=9.14062, days=7
+2025-09-27 16:29:44,578 [INFO] travel_assistant.services.hotel_service:  Fetching hotels near 48.69096,9.14062
+2025-09-27 16:29:45,732 [INFO] travel_assistant.services.hotel_service:  Found 5 hotels
+2025-09-27 16:29:45,734 [INFO] travel_assistant.services.country_service:  Fetching country info for: Europe
+2025-09-27 16:29:45,735 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Europe
+2025-09-27 16:29:46,540 [INFO] travel_assistant.utils.helpers:  Geocode success: Europe → {'lat': 48.69096, 'lon': 9.14062, 'name': 'Europe', 'country': None, 'country_code': None}
+2025-09-27 16:29:49,488 [INFO] travel_assistant.services.country_service:  Country info retrieved successfully for Germany
+2025-09-27 16:29:49,495 [ERROR] travel_assistant.core.assistant: LLM error: All connection attempts failed
+2025-09-27 16:30:16,129 [INFO] travel_assistant.core.conversation: Classifying query: Recommend a destination for a romantic getaway
+2025-09-27 16:30:16,129 [INFO] travel_assistant.core.conversation: Classified as DESTINATION
+2025-09-27 16:30:16,129 [INFO] travel_assistant.core.conversation: Extracting entities from: Recommend a destination for a romantic getaway
+2025-09-27 16:30:16,129 [INFO] travel_assistant.core.conversation: Entities extracted: {'destination': 'Recommend', 'duration': None, 'budget': None, 'interests': ['romantic'], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 16:30:16,129 [INFO] travel_assistant.core.conversation: Updating conversation context...
+2025-09-27 16:30:16,130 [INFO] travel_assistant.core.conversation: Context updated: {'current_topic': 'destination', 'destination': 'Recommend', 'previous_topic': 'general', 'interests': ['romantic']}
+2025-09-27 16:30:16,130 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Recommend
+2025-09-27 16:30:16,927 [INFO] travel_assistant.services.country_service:  Fetching country info for: Recommend
+2025-09-27 16:30:16,928 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Recommend
+2025-09-27 16:30:20,698 [ERROR] travel_assistant.services.country_service:  Country API error for Recommend: 404 Client Error: Not Found for url: https://restcountries.com/v3.1/capital/Recommend?fields=name%2Ccapital%2Cregion%2Csubregion%2Cpopulation%2Clanguages%2Ccurrencies%2Ctimezones
+Traceback (most recent call last):
+  File "/home/mor/Desktop/agen_travel/travel_assistant/backend/travel_assistant/services/country_service.py", line 59, in get_country_info
+    resp.raise_for_status()
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/requests/models.py", line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://restcountries.com/v3.1/capital/Recommend?fields=name%2Ccapital%2Cregion%2Csubregion%2Cpopulation%2Clanguages%2Ccurrencies%2Ctimezones
+2025-09-27 16:30:20,705 [ERROR] travel_assistant.core.assistant: LLM error: All connection attempts failed
+2025-09-27 16:35:08,577 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:35:08,580 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:35:22,839 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:35:22,852 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:35:44,560 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:35:44,573 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:35:49,909 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:35:49,912 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:36:48,200 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:36:48,205 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:36:51,984 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:36:51,987 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:37:26,559 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:37:26,574 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:37:28,268 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:37:28,275 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:40:16,009 [INFO] travel_assistant.core.conversation: Classifying query: Best time to visit Bali for surfing?
+2025-09-27 16:40:16,015 [INFO] travel_assistant.core.conversation: Extracting entities from: Best time to visit Bali for surfing?
+2025-09-27 16:40:16,021 [INFO] travel_assistant.core.conversation: Entities extracted: {'destination': 'Bali', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 16:40:16,021 [INFO] travel_assistant.core.conversation: Updating conversation context...
+2025-09-27 16:40:16,022 [INFO] travel_assistant.core.conversation: Context updated: {'current_topic': 'best_time', 'destination': 'Bali'}
+2025-09-27 16:40:16,024 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Bali
+2025-09-27 16:40:17,331 [INFO] travel_assistant.utils.helpers:  Geocode success: Bali → {'lat': 22.64859, 'lon': 88.34115, 'name': 'Bāli', 'country': 'India', 'country_code': 'IN'}
+2025-09-27 16:40:17,335 [INFO] travel_assistant.services.weather_service:  Fetching daily forecast lat=22.64859, lon=88.34115, days=7
+2025-09-27 16:40:18,651 [INFO] travel_assistant.services.hotel_service:  Fetching hotels near 22.64859,88.34115
+2025-09-27 16:40:19,638 [INFO] travel_assistant.services.hotel_service:  Found 2 hotels
+2025-09-27 16:40:19,641 [INFO] travel_assistant.services.country_service:  Fetching country info for: Bali
+2025-09-27 16:40:19,643 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Bali
+2025-09-27 16:40:20,454 [INFO] travel_assistant.utils.helpers:  Geocode success: Bali → {'lat': 22.64859, 'lon': 88.34115, 'name': 'Bāli', 'country': 'India', 'country_code': 'IN'}
+2025-09-27 16:40:22,249 [INFO] travel_assistant.services.country_service:  Country info retrieved successfully for India
+2025-09-27 16:40:22,264 [ERROR] travel_assistant.core.assistant: LLM error: All connection attempts failed
+2025-09-27 16:40:27,374 [INFO] travel_assistant.core.conversation: Classifying query: How much should I budget for a week in Europe?
+2025-09-27 16:40:27,374 [INFO] travel_assistant.core.conversation: Extracting entities from: How much should I budget for a week in Europe?
+2025-09-27 16:40:27,375 [INFO] travel_assistant.core.conversation: Entities extracted: {'destination': 'Europe', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 16:40:27,375 [INFO] travel_assistant.core.conversation: Updating conversation context...
+2025-09-27 16:40:27,376 [INFO] travel_assistant.core.conversation: Context updated: {'current_topic': 'budget', 'destination': 'Europe', 'previous_topic': 'best_time'}
+2025-09-27 16:40:27,376 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Europe
+2025-09-27 16:40:28,182 [INFO] travel_assistant.utils.helpers:  Geocode success: Europe → {'lat': 48.69096, 'lon': 9.14062, 'name': 'Europe', 'country': None, 'country_code': None}
+2025-09-27 16:40:28,184 [INFO] travel_assistant.services.weather_service:  Fetching daily forecast lat=48.69096, lon=9.14062, days=7
+2025-09-27 16:40:28,977 [INFO] travel_assistant.services.hotel_service:  Fetching hotels near 48.69096,9.14062
+2025-09-27 16:40:29,970 [INFO] travel_assistant.services.hotel_service:  Found 5 hotels
+2025-09-27 16:40:29,973 [INFO] travel_assistant.services.country_service:  Fetching country info for: Europe
+2025-09-27 16:40:29,974 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Europe
+2025-09-27 16:40:30,771 [INFO] travel_assistant.utils.helpers:  Geocode success: Europe → {'lat': 48.69096, 'lon': 9.14062, 'name': 'Europe', 'country': None, 'country_code': None}
+2025-09-27 16:40:33,052 [ERROR] travel_assistant.services.country_service:  Country API error for Europe: HTTPSConnectionPool(host='restcountries.com', port=443): Max retries exceeded with url: /v3.1/name/Deutschland?fields=name%2Ccapital%2Cregion%2Csubregion%2Cpopulation%2Clanguages%2Ccurrencies%2Ctimezones (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))
+Traceback (most recent call last):
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/urllib3/connection.py", line 790, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/urllib3/connection.py", line 969, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+               ^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/urllib3/util/ssl_.py", line 480, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/urllib3/util/ssl_.py", line 524, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ssl.py", line 1042, in _create
+    self.do_handshake()
+  File "/usr/lib/python3.12/ssl.py", line 1320, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLEOFError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/requests/adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/urllib3/util/retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='restcountries.com', port=443): Max retries exceeded with url: /v3.1/name/Deutschland?fields=name%2Ccapital%2Cregion%2Csubregion%2Cpopulation%2Clanguages%2Ccurrencies%2Ctimezones (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/mor/Desktop/agen_travel/travel_assistant/backend/travel_assistant/services/country_service.py", line 52, in get_country_info
+    resp = requests.get(f"{self.base_url}/name/{resolved_country}", params=params, timeout=10)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/requests/adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='restcountries.com', port=443): Max retries exceeded with url: /v3.1/name/Deutschland?fields=name%2Ccapital%2Cregion%2Csubregion%2Cpopulation%2Clanguages%2Ccurrencies%2Ctimezones (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))
+2025-09-27 16:40:33,068 [ERROR] travel_assistant.core.assistant: LLM error: All connection attempts failed
+2025-09-27 16:40:37,689 [INFO] travel_assistant.core.conversation: Classifying query: Solo travel safety tips for women
+2025-09-27 16:40:37,690 [INFO] travel_assistant.core.conversation: Classified as GENERAL
+2025-09-27 16:40:37,690 [INFO] travel_assistant.core.conversation: Extracting entities from: Solo travel safety tips for women
+2025-09-27 16:40:37,691 [INFO] travel_assistant.core.conversation: Entities extracted: {'destination': 'Solo', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 16:40:37,691 [INFO] travel_assistant.core.conversation: Updating conversation context...
+2025-09-27 16:40:37,691 [INFO] travel_assistant.core.conversation: Context updated: {'current_topic': 'general', 'destination': 'Solo', 'previous_topic': 'budget'}
+2025-09-27 16:40:37,694 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Solo
+2025-09-27 16:40:38,478 [INFO] travel_assistant.utils.helpers:  Geocode success: Solo → {'lat': 37.23338, 'lon': -91.95321, 'name': 'Solo', 'country': 'United States', 'country_code': 'US'}
+2025-09-27 16:40:38,481 [INFO] travel_assistant.services.weather_service:  Fetching daily forecast lat=37.23338, lon=-91.95321, days=7
+2025-09-27 16:40:39,284 [INFO] travel_assistant.services.hotel_service:  Fetching hotels near 37.23338,-91.95321
+2025-09-27 16:40:40,263 [INFO] travel_assistant.services.hotel_service:  Found 0 hotels
+2025-09-27 16:40:40,267 [INFO] travel_assistant.services.country_service:  Fetching country info for: Solo
+2025-09-27 16:40:40,268 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Solo
+2025-09-27 16:40:41,107 [INFO] travel_assistant.utils.helpers:  Geocode success: Solo → {'lat': 37.23338, 'lon': -91.95321, 'name': 'Solo', 'country': 'United States', 'country_code': 'US'}
+2025-09-27 16:40:41,952 [ERROR] travel_assistant.services.country_service:  Country API error for Solo: HTTPSConnectionPool(host='restcountries.com', port=443): Max retries exceeded with url: /v3.1/name/United%20States?fields=name%2Ccapital%2Cregion%2Csubregion%2Cpopulation%2Clanguages%2Ccurrencies%2Ctimezones (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))
+Traceback (most recent call last):
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/urllib3/connection.py", line 790, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/urllib3/connection.py", line 969, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+               ^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/urllib3/util/ssl_.py", line 480, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/urllib3/util/ssl_.py", line 524, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ssl.py", line 1042, in _create
+    self.do_handshake()
+  File "/usr/lib/python3.12/ssl.py", line 1320, in do_handshake
+    self._sslobj.do_handshake()
+ssl.SSLEOFError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/requests/adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/urllib3/util/retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='restcountries.com', port=443): Max retries exceeded with url: /v3.1/name/United%20States?fields=name%2Ccapital%2Cregion%2Csubregion%2Cpopulation%2Clanguages%2Ccurrencies%2Ctimezones (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/mor/Desktop/agen_travel/travel_assistant/backend/travel_assistant/services/country_service.py", line 52, in get_country_info
+    resp = requests.get(f"{self.base_url}/name/{resolved_country}", params=params, timeout=10)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/mor/Desktop/agen_travel/env/lib/python3.12/site-packages/requests/adapters.py", line 675, in send
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='restcountries.com', port=443): Max retries exceeded with url: /v3.1/name/United%20States?fields=name%2Ccapital%2Cregion%2Csubregion%2Cpopulation%2Clanguages%2Ccurrencies%2Ctimezones (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))
+2025-09-27 16:40:41,960 [ERROR] travel_assistant.core.assistant: LLM error: All connection attempts failed
+2025-09-27 16:42:58,976 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:42:58,980 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:43:17,839 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:43:17,842 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:43:42,722 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:43:42,730 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:43:43,709 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:43:43,712 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:43:51,277 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:43:51,280 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:44:11,308 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:44:11,311 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:44:29,412 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:44:29,415 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:44:46,353 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:44:46,356 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:44:49,785 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:44:49,787 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:44:52,792 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:44:52,796 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:45:44,843 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:45:44,845 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:45:48,220 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:45:48,222 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:46:02,174 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:46:02,176 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:46:04,004 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:46:04,006 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:46:11,362 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:46:11,366 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:47:08,834 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:47:08,837 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:48:48,193 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:48:48,197 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:49:51,581 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:49:51,595 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:50:02,034 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:50:02,039 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 16:50:05,257 [INFO] travel_assistant.core.conversation: ConversationManager reset
+2025-09-27 16:52:00,727 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 16:52:00,741 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 17:03:38,658 [INFO] travel_assistant.core.conversation: Classifying query: Solo travel safety tips for women
+2025-09-27 17:03:38,661 [INFO] travel_assistant.core.conversation: Extracting entities from: Solo travel safety tips for women
+2025-09-27 17:03:38,668 [INFO] travel_assistant.core.conversation: Entities extracted: {'destination': 'Solo', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 17:03:38,670 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Solo
+2025-09-27 17:03:39,977 [INFO] travel_assistant.utils.helpers:  Geocode success: Solo → {'lat': 37.23338, 'lon': -91.95321, 'name': 'Solo', 'country': 'United States', 'country_code': 'US'}
+2025-09-27 17:03:39,979 [INFO] travel_assistant.services.weather_service:  Fetching daily forecast lat=37.23338, lon=-91.95321, days=7
+2025-09-27 17:03:41,311 [INFO] travel_assistant.services.hotel_service:  Fetching hotels near 37.23338,-91.95321
+2025-09-27 17:03:42,275 [INFO] travel_assistant.services.hotel_service:  Found 0 hotels
+2025-09-27 17:03:42,276 [INFO] travel_assistant.services.country_service:  Fetching country info for: Solo
+2025-09-27 17:03:42,277 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Solo
+2025-09-27 17:03:43,069 [INFO] travel_assistant.utils.helpers:  Geocode success: Solo → {'lat': 37.23338, 'lon': -91.95321, 'name': 'Solo', 'country': 'United States', 'country_code': 'US'}
+2025-09-27 17:03:44,545 [INFO] travel_assistant.services.country_service:  Country info retrieved successfully for United States
+2025-09-27 17:03:44,555 [ERROR] travel_assistant.core.assistant: LLM error: All connection attempts failed
+2025-09-27 17:03:48,734 [INFO] travel_assistant.core.conversation: ConversationManager reset
+2025-09-27 17:03:52,788 [INFO] travel_assistant.core.conversation: Classifying query: Visa requirements for Thailand
+2025-09-27 17:03:52,789 [INFO] travel_assistant.core.conversation: Classified as GENERAL
+2025-09-27 17:03:52,789 [INFO] travel_assistant.core.conversation: Extracting entities from: Visa requirements for Thailand
+2025-09-27 17:03:52,789 [INFO] travel_assistant.core.conversation: Entities extracted: {'destination': 'Thailand', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 17:03:52,790 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Thailand
+2025-09-27 17:03:53,590 [INFO] travel_assistant.utils.helpers:  Geocode success: Thailand → {'lat': 15.5, 'lon': 101.0, 'name': 'Thailand', 'country': 'Thailand', 'country_code': 'TH'}
+2025-09-27 17:03:53,592 [INFO] travel_assistant.services.weather_service:  Fetching daily forecast lat=15.5, lon=101.0, days=7
+2025-09-27 17:03:54,421 [INFO] travel_assistant.services.hotel_service:  Fetching hotels near 15.5,101.0
+2025-09-27 17:03:56,955 [INFO] travel_assistant.services.hotel_service:  Found 0 hotels
+2025-09-27 17:03:56,957 [INFO] travel_assistant.services.country_service:  Fetching country info for: Thailand
+2025-09-27 17:03:56,957 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Thailand
+2025-09-27 17:03:58,263 [INFO] travel_assistant.utils.helpers:  Geocode success: Thailand → {'lat': 15.5, 'lon': 101.0, 'name': 'Thailand', 'country': 'Thailand', 'country_code': 'TH'}
+2025-09-27 17:03:59,739 [INFO] travel_assistant.services.country_service:  Country info retrieved successfully for Thailand
+2025-09-27 17:03:59,742 [ERROR] travel_assistant.core.assistant: LLM error: All connection attempts failed
+2025-09-27 17:07:04,986 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 17:07:05,000 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 17:07:08,608 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 17:07:08,611 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 17:07:11,051 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 17:07:11,064 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 17:07:43,588 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 17:07:43,600 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 17:08:04,816 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 17:08:04,819 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 17:08:16,921 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 17:08:16,937 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 17:08:20,027 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 17:08:20,032 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 17:08:46,399 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 17:08:46,403 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 17:09:17,520 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 17:09:17,534 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 17:09:21,486 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 17:09:21,490 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 17:09:23,324 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 17:09:23,339 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 17:11:15,389 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 17:11:15,403 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 17:11:35,012 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 17:11:35,027 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 17:11:40,954 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 17:11:40,957 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 17:11:47,047 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 17:11:47,053 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 17:11:54,250 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 17:11:54,262 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 17:11:58,590 [INFO] travel_assistant.core.conversation: Resetting conversation context & history
+2025-09-27 17:12:00,703 [INFO] travel_assistant.core.conversation: Classifying query: Visa requirements for Thailand
+2025-09-27 17:12:00,703 [INFO] travel_assistant.core.conversation: Classified as VISA
+2025-09-27 17:12:00,703 [INFO] travel_assistant.core.conversation: Extracting entities from: Visa requirements for Thailand
+2025-09-27 17:12:00,706 [INFO] travel_assistant.core.conversation: Entities extracted: {'destination': 'Thailand', 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None, 'accommodation_type': None, 'citizenship': None, 'purpose': None}
+2025-09-27 17:12:00,706 [INFO] travel_assistant.core.conversation: Updating conversation context...
+2025-09-27 17:12:00,706 [INFO] travel_assistant.core.conversation: Context updated: {'current_topic': 'visa', 'destination': 'Thailand'}
+2025-09-27 17:12:00,707 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Thailand
+2025-09-27 17:12:02,110 [INFO] travel_assistant.utils.helpers:  Geocode success: Thailand → {'lat': 15.5, 'lon': 101.0, 'name': 'Thailand', 'country': 'Thailand', 'country_code': 'TH'}
+2025-09-27 17:12:02,111 [INFO] travel_assistant.services.weather_service:  Fetching daily forecast lat=15.5, lon=101.0, days=7
+2025-09-27 17:12:03,410 [INFO] travel_assistant.services.hotel_service:  Fetching hotels near 15.5,101.0
+2025-09-27 17:12:04,341 [INFO] travel_assistant.services.hotel_service:  Found 0 hotels
+2025-09-27 17:12:04,344 [INFO] travel_assistant.services.country_service:  Fetching country info for: Thailand
+2025-09-27 17:12:04,345 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Thailand
+2025-09-27 17:12:05,152 [INFO] travel_assistant.utils.helpers:  Geocode success: Thailand → {'lat': 15.5, 'lon': 101.0, 'name': 'Thailand', 'country': 'Thailand', 'country_code': 'TH'}
+2025-09-27 17:12:06,750 [INFO] travel_assistant.services.country_service:  Country info retrieved successfully for Thailand
+2025-09-27 17:12:06,752 [INFO] travel_assistant.services.visa_service: [visa] Thailand visa check: passport=None, stay_days=None, purpose=tourism
+2025-09-27 17:12:06,760 [ERROR] travel_assistant.core.assistant: LLM error: All connection attempts failed

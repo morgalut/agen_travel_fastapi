@@ -1,7 +1,6 @@
 # travel_assistant/backend/Dockerfile
 FROM python:3.12-slim
 
-# Prevent Python from writing .pyc files, force stdout flush
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1
 
@@ -21,11 +20,11 @@ RUN groupadd -g 1000 appuser && useradd -m -u 1000 -g 1000 appuser
 WORKDIR /app
 
 # ------------------ Python Deps ------------------
-COPY backend/requirements.txt .
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # ------------------ App Code ------------------
-COPY backend/ ./
+COPY . .
 
 # ------------------ Logging Setup ------------------
 RUN mkdir -p /app/logs /tmp/app-logs \

@@ -1,12 +1,16 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { sendMessage, ChatMessage, resetConversation } from '@/lib/api';
+
 // Using simple SVG icons instead of lucide-react to avoid import issues
 const SendIcon = () => (
   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
   </svg>
 );
+
+
 
 const PlaneIcon = () => (
   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -40,7 +44,6 @@ const LoaderIcon = () => (
     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
   </svg>
 );
-import { sendMessage, ChatMessage } from '@/lib/api';
 
 export default function Home() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -153,15 +156,29 @@ export default function Home() {
 
     try {
       const response = await sendMessage(inputText.trim());
-
+    
+      // Main assistant answer
       const assistantMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
-        text: response.answer,  // use answer not response
+        text: response.answer,
         isUser: false,
         timestamp: new Date(),
       };
-      
       setMessages(prev => [...prev, assistantMessage]);
+    
+      // Optional follow-up guidance
+      if (response.followup) {
+        const followupMessage: ChatMessage = {
+          id: (Date.now() + 2).toString(),
+          text: `💡 ${response.followup}`,
+          isUser: false,
+          timestamp: new Date(),
+        };
+        setMessages(prev => [...prev, followupMessage]);
+      }
+    
+      console.debug("📝 Context:", response.context);
+    
       playSound('receive');
     } catch (error) {
       const errorMessage: ChatMessage = {
@@ -193,7 +210,11 @@ export default function Home() {
     setShowQuickQuestions(false);
   };
 
-  const clearConversation = () => {
+  const clearConversation = async () => {
+    // 🔄 Call backend reset
+    await resetConversation();
+  
+    // 🧹 Reset frontend state
     setMessages([{
       id: '1',
       text: "Welcome to WanderGuide! ✈️\n\nI'm your personal travel companion, ready to help you plan your next adventure. Whether you need packing tips, destination recommendations, or local insights, I'm here to make your travel planning effortless.\n\n**What can I help you with today?**\n• Destination recommendations\n• Packing lists and travel tips\n• Local attractions and hidden gems\n• Weather and seasonal advice\n• Budget planning and cost estimates\n\nJust ask me anything about travel!",
