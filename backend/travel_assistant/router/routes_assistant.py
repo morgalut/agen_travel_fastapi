@@ -29,10 +29,8 @@ async def ask_travel_assistant(request: QueryRequest) -> QueryResponse:
     - context: current conversation state
     """
     try:
-        # ✅ Await the coroutine
         raw_result = await assistant.generate_response(request.text)
 
-        # ✅ Format only the "answer" part
         formatted_answer = format_response(raw_result.get("answer", ""))
 
         return QueryResponse(

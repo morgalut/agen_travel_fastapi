@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 class TravelAssistant:
     """Optimized travel assistant with stronger intent detection and hotel integration."""
 
-    def __init__(self, llm_api_url: str = "http://localhost:11434/api/generate", model: str = "llama3.2:1b"):
+    def __init__(self, llm_api_url: str = "http://localhost:11434/api/generate", model: str = "gemma:2b"):
         logger.info(" Initializing TravelAssistant...")
         print("[assistant]  Initializing TravelAssistant...")
 
@@ -77,13 +77,16 @@ class TravelAssistant:
                 return True
         if query_type == QueryType.PACKING:
             needed = ("destination", "duration")
-            return any(not entities.get(k) for k in needed)
+            for k in needed:
+                if not entities.get(k) and not self.conversation_manager.context.get(k):
+                    return True
+            return False
         if query_type == QueryType.ATTRACTIONS:
             return not entities.get("destination")
         if query_type == QueryType.ACCOMMODATION:
-            # We can proceed with context destination if present; otherwise ask.
             return not (entities.get("destination") or self.conversation_manager.context.get("destination"))
         return False
+
 
     def _ask_for_clarification(self, query_type: QueryType) -> str:
         clarifications = {
@@ -155,7 +158,6 @@ class TravelAssistant:
         type_note = f" ({acc_type})" if acc_type else ""
 
         if hotels:
-            # Expect hotels as list of dicts: {name, type, distance_km?, rating?}
             lines = []
             for h in hotels[:5]:
                 t = h.get("type") or "hotel"
@@ -290,7 +292,6 @@ What vibe are you after and when?"""
                     "currency": country_info.get("currency"),
                 }
 
-            # (Optional) transport glance
             try:
                 if coords:
                     t = await asyncio.to_thread(self.transport_service.get_transport_summary, destination)

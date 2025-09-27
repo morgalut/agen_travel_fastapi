@@ -20,3 +20,140 @@
 2025-09-27 03:07:25,549 [INFO] travel_assistant.utils.helpers: ✅ Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
 2025-09-27 03:07:27,997 [INFO] travel_assistant.services.country_service: ✅ Country info retrieved successfully for France
 2025-09-27 03:07:28,000 [INFO] travel_assistant.core.prompt_engine: 📝 Building prompt for query_type=local_attractions
+2025-09-27 14:16:38,365 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 14:16:38,366 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 14:17:11,433 [INFO] travel_assistant.core.assistant: 📝 Generating response for: What should I pack for a 5-day trip to Paris in winter?
+2025-09-27 14:17:11,433 [INFO] travel_assistant.core.conversation:  Classifying query: What should I pack for a 5-day trip to Paris in winter?
+2025-09-27 14:17:11,434 [INFO] travel_assistant.core.conversation:  Classified as PACKING
+2025-09-27 14:17:11,435 [INFO] travel_assistant.core.conversation:  Extracting entities from: What should I pack for a 5-day trip to Paris in winter?
+2025-09-27 14:17:11,437 [INFO] travel_assistant.core.conversation:  Entities extracted: {'destination': 'Paris', 'duration': None, 'budget': ' 5', 'interests': [], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 14:17:11,437 [INFO] travel_assistant.core.conversation:  Updating conversation context...
+2025-09-27 14:17:11,437 [INFO] travel_assistant.core.conversation:  Context updated: {'current_topic': 'packing_suggestions', 'destination': 'Paris', 'budget': ' 5'}
+2025-09-27 14:17:34,454 [INFO] travel_assistant.core.assistant: 📝 Generating response for: What should I pack for a 5-day trip to Paris in winter?
+2025-09-27 14:17:34,454 [INFO] travel_assistant.core.conversation:  Classifying query: What should I pack for a 5-day trip to Paris in winter?
+2025-09-27 14:17:34,454 [INFO] travel_assistant.core.conversation:  Classified as PACKING
+2025-09-27 14:17:34,454 [INFO] travel_assistant.core.conversation:  Extracting entities from: What should I pack for a 5-day trip to Paris in winter?
+2025-09-27 14:17:34,454 [INFO] travel_assistant.core.conversation:  Entities extracted: {'destination': 'Paris', 'duration': None, 'budget': ' 5', 'interests': [], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 14:17:34,455 [INFO] travel_assistant.core.conversation:  Updating conversation context...
+2025-09-27 14:17:34,455 [INFO] travel_assistant.core.conversation:  Context updated: {'current_topic': 'packing_suggestions', 'destination': 'Paris', 'budget': ' 5', 'previous_topic': 'packing_suggestions'}
+2025-09-27 14:28:04,161 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 14:28:04,163 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 14:29:14,075 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 14:29:14,076 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 14:29:22,358 [INFO] travel_assistant.core.assistant: 📝 Generating response for: What should I pack for a 5-day trip to Paris in winter?
+2025-09-27 14:29:22,358 [INFO] travel_assistant.core.conversation:  Classifying query: What should I pack for a 5-day trip to Paris in winter?
+2025-09-27 14:29:22,360 [INFO] travel_assistant.core.conversation:  Classified as PACKING
+2025-09-27 14:29:22,360 [INFO] travel_assistant.core.conversation:  Extracting entities from: What should I pack for a 5-day trip to Paris in winter?
+2025-09-27 14:29:22,362 [INFO] travel_assistant.core.conversation:  Entities extracted: {'destination': 'Paris', 'duration': None, 'budget': ' 5', 'interests': [], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 14:29:22,362 [INFO] travel_assistant.core.conversation:  Updating conversation context...
+2025-09-27 14:29:22,362 [INFO] travel_assistant.core.conversation:  Context updated: {'current_topic': 'packing_suggestions', 'destination': 'Paris', 'budget': ' 5'}
+2025-09-27 14:31:16,488 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 14:31:16,489 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 14:31:42,315 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 14:31:42,316 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 14:31:46,759 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 14:31:46,760 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 14:37:12,377 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 14:37:12,379 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 14:37:45,773 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 14:37:45,774 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 14:37:47,932 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 14:37:47,933 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 14:38:05,095 [INFO] travel_assistant.core.assistant: 📝 Generating response for: What should I pack for a 5-day trip to Paris in winter?
+2025-09-27 14:38:05,096 [INFO] travel_assistant.core.conversation:  Classifying query: What should I pack for a 5-day trip to Paris in winter?
+2025-09-27 14:38:05,096 [INFO] travel_assistant.core.conversation:  Classified as PACKING
+2025-09-27 14:38:05,097 [INFO] travel_assistant.core.conversation:  Extracting entities from: What should I pack for a 5-day trip to Paris in winter?
+2025-09-27 14:38:05,098 [INFO] travel_assistant.core.conversation:  Entities extracted: {'destination': 'Paris', 'duration': '5 day', 'budget': ' 5', 'interests': [], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 14:38:05,098 [INFO] travel_assistant.core.conversation:  Updating conversation context...
+2025-09-27 14:38:05,098 [INFO] travel_assistant.core.conversation:  Context updated: {'current_topic': 'packing_suggestions', 'destination': 'Paris', 'duration': '5 day', 'budget': ' 5'}
+2025-09-27 14:38:05,099 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Paris
+2025-09-27 14:38:06,409 [INFO] travel_assistant.utils.helpers:  Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 14:38:06,411 [INFO] travel_assistant.services.weather_service:  Fetching daily forecast lat=48.85341, lon=2.3488, days=7
+2025-09-27 14:38:07,743 [INFO] travel_assistant.services.country_service:  Fetching hotels near 48.85341,2.3488
+2025-09-27 14:38:10,433 [INFO] travel_assistant.services.country_service:  Found 5 hotels
+2025-09-27 14:38:10,436 [INFO] travel_assistant.services.country_service:  Fetching country info for: Paris
+2025-09-27 14:38:10,436 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Paris
+2025-09-27 14:38:11,242 [INFO] travel_assistant.utils.helpers:  Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 14:38:13,553 [INFO] travel_assistant.services.country_service:  Country info retrieved successfully for France
+2025-09-27 14:38:13,556 [INFO] travel_assistant.core.prompt_engine:  Building prompt for query_type=packing_suggestions
+2025-09-27 14:38:41,042 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-09-27 14:38:48,058 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 14:38:48,059 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 14:38:58,837 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 14:38:58,838 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 14:39:19,138 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 14:39:19,139 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 14:39:24,575 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 14:39:24,576 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 14:39:28,032 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 14:39:28,033 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 14:39:33,489 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 14:39:33,491 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 14:39:49,267 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 14:39:49,268 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 14:39:51,428 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 14:39:51,430 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 14:41:01,147 [INFO] travel_assistant.core.assistant: 📝 Generating response for: What should I wear if I also go to a fancy dinner?
+2025-09-27 14:41:01,148 [INFO] travel_assistant.core.conversation:  Classifying query: What should I wear if I also go to a fancy dinner?
+2025-09-27 14:41:01,149 [INFO] travel_assistant.core.conversation:  Classified as PACKING
+2025-09-27 14:41:01,149 [INFO] travel_assistant.core.conversation:  Extracting entities from: What should I wear if I also go to a fancy dinner?
+2025-09-27 14:41:01,151 [INFO] travel_assistant.core.conversation:  Entities extracted: {'destination': None, 'duration': None, 'budget': None, 'interests': [], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 14:41:01,151 [INFO] travel_assistant.core.conversation:  Updating conversation context...
+2025-09-27 14:41:01,152 [INFO] travel_assistant.core.conversation:  Context updated: {'current_topic': 'packing_suggestions'}
+2025-09-27 14:43:36,895 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 14:43:36,897 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 14:43:49,976 [INFO] travel_assistant.core.assistant: 📝 Generating response for: What should I pack for a 5-day trip to Paris in winter?
+2025-09-27 14:43:49,976 [INFO] travel_assistant.core.conversation:  Classifying query: What should I pack for a 5-day trip to Paris in winter?
+2025-09-27 14:43:49,979 [INFO] travel_assistant.core.conversation:  Classified as PACKING
+2025-09-27 14:43:49,979 [INFO] travel_assistant.core.conversation:  Extracting entities from: What should I pack for a 5-day trip to Paris in winter?
+2025-09-27 14:43:49,981 [INFO] travel_assistant.core.conversation:  Entities extracted: {'destination': 'Paris', 'duration': '5 day', 'budget': ' 5', 'interests': [], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 14:43:49,981 [INFO] travel_assistant.core.conversation:  Updating conversation context...
+2025-09-27 14:43:49,982 [INFO] travel_assistant.core.conversation:  Context updated: {'current_topic': 'packing_suggestions', 'destination': 'Paris', 'duration': '5 day', 'budget': ' 5'}
+2025-09-27 14:43:49,983 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Paris
+2025-09-27 14:43:51,293 [INFO] travel_assistant.utils.helpers:  Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 14:43:51,294 [INFO] travel_assistant.services.weather_service:  Fetching daily forecast lat=48.85341, lon=2.3488, days=7
+2025-09-27 14:43:52,580 [INFO] travel_assistant.services.country_service:  Fetching hotels near 48.85341,2.3488
+2025-09-27 14:43:53,824 [INFO] travel_assistant.services.country_service:  Found 5 hotels
+2025-09-27 14:43:53,827 [INFO] travel_assistant.services.country_service:  Fetching country info for: Paris
+2025-09-27 14:43:53,828 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Paris
+2025-09-27 14:43:54,640 [INFO] travel_assistant.utils.helpers:  Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 14:43:57,009 [INFO] travel_assistant.services.country_service:  Country info retrieved successfully for France
+2025-09-27 14:43:57,010 [INFO] travel_assistant.core.prompt_engine:  Building prompt for query_type=packing_suggestions
+2025-09-27 14:44:23,520 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-09-27 14:44:41,119 [INFO] travel_assistant.core.assistant: 📝 Generating response for: What should I wear if I also go to a fancy dinner?
+2025-09-27 14:44:41,120 [INFO] travel_assistant.core.conversation:  Classifying query: What should I wear if I also go to a fancy dinner?
+2025-09-27 14:44:41,120 [INFO] travel_assistant.core.conversation:  Classified as PACKING
+2025-09-27 14:44:41,120 [INFO] travel_assistant.core.conversation:  Extracting entities from: What should I wear if I also go to a fancy dinner?
+2025-09-27 14:44:41,122 [INFO] travel_assistant.core.conversation:  Entities extracted: {'destination': 'Paris', 'duration': '5 day', 'budget': ' 5', 'interests': ['dinner'], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 14:44:41,122 [INFO] travel_assistant.core.conversation:  Updating conversation context...
+2025-09-27 14:44:41,122 [INFO] travel_assistant.core.conversation:  Context updated: {'current_topic': 'packing_suggestions', 'destination': 'Paris', 'duration': '5 day', 'budget': ' 5', 'previous_topic': 'packing_suggestions', 'interests': ['dinner']}
+2025-09-27 14:44:41,122 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Paris
+2025-09-27 14:44:41,903 [INFO] travel_assistant.utils.helpers:  Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 14:44:41,905 [INFO] travel_assistant.services.weather_service:  Fetching daily forecast lat=48.85341, lon=2.3488, days=7
+2025-09-27 14:44:42,698 [INFO] travel_assistant.services.country_service:  Fetching hotels near 48.85341,2.3488
+2025-09-27 14:44:43,832 [INFO] travel_assistant.services.country_service:  Found 5 hotels
+2025-09-27 14:44:43,833 [INFO] travel_assistant.services.country_service:  Fetching country info for: Paris
+2025-09-27 14:44:43,833 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Paris
+2025-09-27 14:44:44,641 [INFO] travel_assistant.utils.helpers:  Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 14:44:46,117 [INFO] travel_assistant.services.country_service:  Country info retrieved successfully for France
+2025-09-27 14:44:46,119 [INFO] travel_assistant.core.prompt_engine:  Building prompt for query_type=packing_suggestions
+2025-09-27 14:45:00,188 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-09-27 14:45:05,845 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-09-27 14:45:22,411 [INFO] travel_assistant.core.assistant: 📝 Generating response for: What attractions should I see while in Paris?
+2025-09-27 14:45:22,411 [INFO] travel_assistant.core.conversation:  Classifying query: What attractions should I see while in Paris?
+2025-09-27 14:45:22,412 [INFO] travel_assistant.core.conversation:  Classified as ATTRACTIONS
+2025-09-27 14:45:22,412 [INFO] travel_assistant.core.conversation:  Extracting entities from: What attractions should I see while in Paris?
+2025-09-27 14:45:22,413 [INFO] travel_assistant.core.conversation:  Entities extracted: {'destination': 'Paris', 'duration': '5 day', 'budget': ' 5', 'interests': ['dinner'], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 14:45:22,413 [INFO] travel_assistant.core.conversation:  Updating conversation context...
+2025-09-27 14:45:22,413 [INFO] travel_assistant.core.conversation:  Context updated: {'current_topic': 'local_attractions', 'destination': 'Paris', 'duration': '5 day', 'budget': ' 5', 'previous_topic': 'packing_suggestions', 'interests': ['dinner']}
+2025-09-27 14:45:22,414 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Paris
+2025-09-27 14:45:23,205 [INFO] travel_assistant.utils.helpers:  Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 14:45:23,206 [INFO] travel_assistant.services.weather_service:  Fetching daily forecast lat=48.85341, lon=2.3488, days=7
+2025-09-27 14:45:23,984 [INFO] travel_assistant.services.country_service:  Fetching hotels near 48.85341,2.3488
+2025-09-27 14:45:25,240 [INFO] travel_assistant.services.country_service:  Found 5 hotels
+2025-09-27 14:45:25,242 [INFO] travel_assistant.services.country_service:  Fetching country info for: Paris
+2025-09-27 14:45:25,242 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Paris
+2025-09-27 14:45:26,044 [INFO] travel_assistant.utils.helpers:  Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 14:45:27,520 [INFO] travel_assistant.services.country_service:  Country info retrieved successfully for France
+2025-09-27 14:45:27,522 [INFO] travel_assistant.core.prompt_engine:  Building prompt for query_type=local_attractions
+2025-09-27 14:45:57,954 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"

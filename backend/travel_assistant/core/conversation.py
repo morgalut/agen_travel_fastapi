@@ -11,7 +11,7 @@ class QueryType(Enum):
     DESTINATION = "destination_recommendation"
     PACKING = "packing_suggestions"
     ATTRACTIONS = "local_attractions"
-    ACCOMMODATION = "accommodation"  
+    ACCOMMODATION = "accommodation"
     GENERAL = "general"
 
 # Proper nouns like "New York", "San Francisco"
@@ -22,9 +22,17 @@ _CITY_HINT = r"(?:\bin|\bto|\bfor|\bat)\s+([A-Z][a-zA-Z]{2,}(?:[\s\-][A-Z][a-zA-
 # Words that derail naive destination extraction when used at sentence start
 _QUESTION_WORDS = {"which", "where", "what", "when", "how", "who", "whom", "whose"}
 
+# Map common words to normalized durations
+_WORD_DURATION = {
+    "weekend": "2 days (weekend)",
+    "couple of days": "2–3 days",
+    "few days": "3–4 days",
+    "fortnight": "2 weeks",
+}
+
 
 class ConversationManager:
-    """Manages conversation flow and context."""
+    """Manages conversation flow and context (stateful)."""
 
     def __init__(self):
         self.context: Dict[str, Any] = {}
@@ -39,14 +47,12 @@ class ConversationManager:
 
         text = user_input.lower()
 
-        # ✅ Robust hotel/accommodation detection
         hotel_patterns = [
             r"\bhotel(s)?\b", r"\bhostel(s)?\b", r"\bguesthouse(s)?\b",
             r"\b(accommodation|lodging)\b", r"\bwhere to stay\b",
             r"\bplace to (sleep|stay)\b", r"\binn\b", r"\bmotel(s)?\b",
             r"\bbnb\b", r"\bbed and breakfast\b", r"\bboutique hotel\b"
         ]
-
         destination_patterns = [
             r"where.*(should|to).*(go|travel)", r"recommend.*destination",
             r"place.*visit", r"vacation.*ideas", r"trip.*suggestions"
@@ -83,14 +89,13 @@ class ConversationManager:
 
     # ---------------- Entity Extraction ----------------
     def _strip_leading_question_words(self, text: str) -> str:
-        # Remove first token if it's a question word (and common commas)
         tokens = [t for t in re.split(r"\s+", text) if t]
         while tokens and tokens[0].lower().strip(",.?") in _QUESTION_WORDS:
             tokens.pop(0)
         return " ".join(tokens)
 
     def extract_entities(self, user_input: str) -> Dict[str, Any]:
-        """Extract key entities from user input with context-aware fallbacks."""
+        """Extract key entities from user input with context continuity."""
         logger.info(f" Extracting entities from: {user_input}")
         print(f"[conversation]  Extracting entities from: {user_input}")
 
@@ -100,58 +105,69 @@ class ConversationManager:
             "budget": None,
             "interests": [],
             "travel_dates": None,
-            # accommodation-specific (optional)
             "accommodation_type": None,
         }
 
         cleaned = self._strip_leading_question_words(user_input)
 
-        # Duration like "5 days", "2 weeks"
-        if m := re.search(r"(\d+)\s*(days?|weeks?|months?)", cleaned, flags=re.I):
-            entities["duration"] = m.group(0)
+        # --- Duration ---
+        if m := re.search(r"(\d+)[\s-]*(days?|weeks?|months?)", cleaned, flags=re.I):
+            entities["duration"] = m.group(0).replace("-", " ")
             print(f"[conversation]  Duration: {entities['duration']}")
+        else:
+            for phrase, norm in _WORD_DURATION.items():
+                if re.search(rf"\b{phrase}\b", cleaned, flags=re.I):
+                    entities["duration"] = norm
+                    print(f"[conversation]  Duration: {entities['duration']}")
+                    break
 
-        # Budget like "$2000", "2000 USD", "2k dollars", "budget 150 €/night"
+        # --- Budget ---
         mb = re.search(
-            r"(?:(?:budget|up to|around)\s*)?(\$|€|£)?\s*(\d+(?:,\d{3})*|\d+)(?:\s*(k|thousand))?\s*(usd|dollars|eur|euros|gbp|pounds|per night|/night|a night)?",
+            r"(?:(?:budget|up to|around)\s*)?(\$|€|£)?\s*(\d+(?:,\d{3})*|\d+)"
+            r"(?:\s*(k|thousand))?\s*(usd|dollars|eur|euros|gbp|pounds|per night|/night|a night)?",
             cleaned, flags=re.I
         )
         if mb:
             entities["budget"] = mb.group(0)
             print(f"[conversation]  Budget: {entities['budget']}")
 
-        # Interests
+        # --- Interests ---
         interests = [
             "beach", "mountain", "city", "culture", "adventure", "food",
-            "shopping", "nature", "museum", "nightlife", "family", "romantic"
+            "shopping", "nature", "museum", "nightlife", "family", "romantic",
+            "dinner", "formal", "hiking"
         ]
         entities["interests"] = [w for w in interests if re.search(rf"\b{w}\b", cleaned, flags=re.I)]
         if entities["interests"]:
             print(f"[conversation]  Interests: {entities['interests']}")
 
-        # Accommodation type hints
+        # --- Accommodation type ---
         acc_types = ["hotel", "hostel", "apartment", "boutique", "guesthouse", "bnb", "motel", "resort"]
         for t in acc_types:
             if re.search(rf"\b{t}s?\b", cleaned, re.I):
                 entities["accommodation_type"] = t
                 break
 
-        # Destination from "in/at/to <City>"
+        # --- Destination ---
         md = re.search(_CITY_HINT, cleaned)
         if md:
             entities["destination"] = md.group(1)
             print(f"[conversation]  Destination: {entities['destination']}")
         else:
-            # Fallback to last capitalized phrase, but skip leading question tokens like "Which", "Where"
             tokens = re.findall(_PROPER_NOUN, cleaned)
             if tokens:
                 entities["destination"] = tokens[-1]
                 print(f"[conversation]  Destination fallback: {entities['destination']}")
 
-        # Reuse last known destination if missing
-        if not entities["destination"] and self.context.get("destination"):
-            entities["destination"] = self.context["destination"]
-            print(f"[conversation]  Using context destination: {entities['destination']}")
+        # --- Reuse context if missing ---
+        for key in ["destination", "duration", "budget"]:
+            if not entities.get(key) and self.context.get(key):
+                entities[key] = self.context[key]
+                print(f"[conversation]  Reused {key} from context: {entities[key]}")
+
+        # Merge interests with context
+        if not entities["interests"] and self.context.get("interests"):
+            entities["interests"] = self.context["interests"]
 
         logger.info(f" Entities extracted: {entities}")
         print(f"[conversation]  Entities extracted: {entities}")
@@ -159,11 +175,10 @@ class ConversationManager:
 
     # ---------------- Context ----------------
     def update_context(self, user_input: str, query_type: QueryType, entities: Dict[str, Any]):
-        """Update conversation context and keep accommodation intent sticky."""
+        """Update conversation context and keep continuity across turns."""
         logger.info(" Updating conversation context...")
         print("[conversation]  Updating context...")
 
-        # Track previous/current topic
         prev = self.context.get("current_topic")
         if prev:
             self.context["previous_topic"] = prev
@@ -173,13 +188,12 @@ class ConversationManager:
         self.current_topic = query_type
         print(f"[conversation]  Current topic set: {query_type.value}")
 
-        # Persist entities
+        # Merge entities into context (always overwrite if new value present)
         for k, v in entities.items():
             if v:
                 self.context[k] = v
                 print(f"[conversation]  Stored entity {k}={v}")
 
-        # Sticky accommodation intent
         if query_type == QueryType.ACCOMMODATION:
             self.context["accommodation_intent"] = True
             self.context["last_accommodation_query"] = user_input

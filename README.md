@@ -27,9 +27,9 @@ curl -fsSL https://ollama.com/install.sh | sh
 # Start Ollama server
 ollama serve
 
-# Download and run LLaMA 3.2 1B model
-ollama pull llama3.2:1b
-ollama run llama3.2:1b
+# Download and run 
+ollama pull gemma:2b
+ollama run gemma:2b
 ```
 
 ### 2. Install Dependencies

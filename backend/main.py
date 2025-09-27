@@ -119,15 +119,14 @@ def run_cli():
 
     while True:
         try:
-            user_input = input("\n🧳 You: ").strip()
+            user_input = input("\n You: ").strip()
             if not user_input:
                 continue
             if user_input.lower() in ("quit", "exit", "bye"):
                 print("\n Safe travels!")
                 break
             print("\n Thinking...")
-            # If your assistant.generate_response is async, you can adapt with asyncio.run here.
-            resp = asyncio.run(assistant.generate_response(user_input))  # if generate_response is async
+            resp = asyncio.run(assistant.generate_response(user_input)) 
             print(f"\n Assistant: {format_response(resp)}")
         except KeyboardInterrupt:
             print("\n\n Safe travels!")
