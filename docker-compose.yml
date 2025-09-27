@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   ollama:
     image: ollama/ollama:latest
@@ -7,22 +9,31 @@ services:
     environment:
       - OLLAMA_HOST=0.0.0.0
     volumes:
-      - ollama_models:/root/.ollama  # persist models
+      - ollama_models:/root/.ollama   # persist models
     entrypoint: >
       sh -c "
-        ollama serve &                # start ollama server
-        sleep 5 &&                    # wait for server to boot
-        ollama pull gemma:2b &&       # auto-pull model
-        tail -f /dev/null             # keep container alive
+        # start Ollama in background
+        ollama serve &
+
+        # wait for Ollama API to come online
+        until curl -fsS http://127.0.0.1:11434/api/tags >/dev/null 2>&1; do
+          echo '⏳ Waiting for Ollama server...'
+          sleep 5
+        done
+
+        echo '⬇️ Pulling gemma:2b...'
+        ollama pull gemma:2b || true
+
+        # keep Ollama running as main process
+        wait -n
       "
     healthcheck:
       test: ["CMD", "curl", "-fsS", "http://127.0.0.1:11434/api/tags"]
       interval: 15s
       timeout: 10s
-      retries: 15
-      start_period: 60s
+      retries: 30
+      start_period: 120s
     restart: unless-stopped
-
 
   travel_assistant:
     build:
@@ -44,8 +55,7 @@ services:
     working_dir: /app
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     healthcheck:
-      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:11434/api/tags"]
-
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8000/docs"]
       interval: 10s
       timeout: 5s
       retries: 20
