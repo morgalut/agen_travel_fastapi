@@ -157,3 +157,23 @@
 2025-09-27 14:45:27,520 [INFO] travel_assistant.services.country_service:  Country info retrieved successfully for France
 2025-09-27 14:45:27,522 [INFO] travel_assistant.core.prompt_engine:  Building prompt for query_type=local_attractions
 2025-09-27 14:45:57,954 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"
+2025-09-27 14:52:41,295 [INFO] travel_assistant.main:  Logging to /home/mor/Desktop/agen_travel/travel_assistant/backend/logs/app.log
+2025-09-27 14:52:41,296 [INFO] travel_assistant.main:  FastAPI app initialized. Router /assistant mounted.
+2025-09-27 14:53:45,228 [INFO] travel_assistant.core.assistant: 📝 Generating response for: What should I pack for a 5-day trip to Paris in winter?
+2025-09-27 14:53:45,229 [INFO] travel_assistant.core.conversation:  Classifying query: What should I pack for a 5-day trip to Paris in winter?
+2025-09-27 14:53:45,230 [INFO] travel_assistant.core.conversation:  Classified as PACKING
+2025-09-27 14:53:45,231 [INFO] travel_assistant.core.conversation:  Extracting entities from: What should I pack for a 5-day trip to Paris in winter?
+2025-09-27 14:53:45,236 [INFO] travel_assistant.core.conversation:  Entities extracted: {'destination': 'Paris', 'duration': '5 day', 'budget': ' 5', 'interests': [], 'travel_dates': None, 'accommodation_type': None}
+2025-09-27 14:53:45,236 [INFO] travel_assistant.core.conversation:  Updating conversation context...
+2025-09-27 14:53:45,236 [INFO] travel_assistant.core.conversation:  Context updated: {'current_topic': 'packing_suggestions', 'destination': 'Paris', 'duration': '5 day', 'budget': ' 5'}
+2025-09-27 14:53:45,238 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Paris
+2025-09-27 14:53:46,535 [INFO] travel_assistant.utils.helpers:  Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 14:53:46,537 [INFO] travel_assistant.services.weather_service:  Fetching daily forecast lat=48.85341, lon=2.3488, days=7
+2025-09-27 14:53:47,822 [INFO] travel_assistant.services.hotel_service:  Fetching hotels near 48.85341,2.3488
+2025-09-27 14:53:48,912 [INFO] travel_assistant.services.hotel_service:  Found 5 hotels
+2025-09-27 14:53:48,913 [INFO] travel_assistant.services.country_service:  Fetching country info for: Paris
+2025-09-27 14:53:48,913 [INFO] travel_assistant.utils.helpers:  Geocoding request for city: Paris
+2025-09-27 14:53:49,704 [INFO] travel_assistant.utils.helpers:  Geocode success: Paris → {'lat': 48.85341, 'lon': 2.3488, 'name': 'Paris', 'country': 'France', 'country_code': 'FR'}
+2025-09-27 14:53:51,212 [INFO] travel_assistant.services.country_service:  Country info retrieved successfully for France
+2025-09-27 14:53:51,215 [INFO] travel_assistant.core.prompt_engine:  Building prompt for query_type=packing_suggestions
+2025-09-27 14:54:18,568 [INFO] httpx: HTTP Request: POST http://localhost:11434/api/generate "HTTP/1.1 200 OK"

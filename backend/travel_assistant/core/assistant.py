@@ -9,7 +9,9 @@ import httpx
 from .prompt_engine import PromptEngine
 from .conversation import ConversationManager, QueryType
 from ..services.weather_service import WeatherService
-from ..services.country_service import CountryService, HotelService, TransportService
+from ..services.country_service import CountryService
+from ..services.hotel_service import HotelService
+from ..services.transport_service import TransportService
 from ..utils.helpers import geocode_location
 
 logger = logging.getLogger(__name__)
