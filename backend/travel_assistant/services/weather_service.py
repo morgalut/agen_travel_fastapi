@@ -31,8 +31,8 @@ class WeatherService:
 
     # ---------------- DAILY FORECAST ----------------
     def get_weather_forecast(self, latitude: float, longitude: float, days: int = 7) -> Optional[Dict[str, Any]]:
-        logger.info(f"🌦️ Fetching daily forecast lat={latitude}, lon={longitude}, days={days}")
-        print(f"[weather_service] 🌦️ Daily forecast request for {days} days")
+        logger.info(f" Fetching daily forecast lat={latitude}, lon={longitude}, days={days}")
+        print(f"[weather_service]  Daily forecast request for {days} days")
 
         try:
             params = {
@@ -68,14 +68,14 @@ class WeatherService:
             }
 
         except Exception as e:
-            logger.error(f"❌ Daily forecast error: {e}", exc_info=True)
-            print(f"[weather_service] ❌ Daily forecast error: {e}")
+            logger.error(f" Daily forecast error: {e}", exc_info=True)
+            print(f"[weather_service]  Daily forecast error: {e}")
             return None
 
     # ---------------- HOURLY FORECAST ----------------
     def get_hourly_forecast(self, latitude: float, longitude: float, hours: int = 24) -> Optional[List[Dict[str, Any]]]:
-        logger.info(f"🕒 Fetching hourly forecast for next {hours}h")
-        print(f"[weather_service] 🕒 Hourly forecast for {hours} hours")
+        logger.info(f" Fetching hourly forecast for next {hours}h")
+        print(f"[weather_service]  Hourly forecast for {hours} hours")
         try:
             params = {
                 "latitude": latitude,
@@ -99,14 +99,14 @@ class WeatherService:
             ]
             return hourly
         except Exception as e:
-            logger.error(f"❌ Hourly forecast error: {e}", exc_info=True)
-            print(f"[weather_service] ❌ Hourly forecast error: {e}")
+            logger.error(f" Hourly forecast error: {e}", exc_info=True)
+            print(f"[weather_service]  Hourly forecast error: {e}")
             return None
 
     # ---------------- AIR QUALITY ----------------
     def get_air_quality(self, latitude: float, longitude: float) -> Optional[Dict[str, Any]]:
-        logger.info("🌬️ Fetching air quality (AQI)")
-        print("[weather_service] 🌬️ Requesting AQI data")
+        logger.info(" Fetching air quality (AQI)")
+        print("[weather_service]  Requesting AQI data")
         try:
             url = "https://air-quality-api.open-meteo.com/v1/air-quality"
             params = {
@@ -119,8 +119,8 @@ class WeatherService:
             resp.raise_for_status()
             return resp.json()
         except Exception as e:
-            logger.error(f"❌ Air quality error: {e}", exc_info=True)
-            print(f"[weather_service] ❌ Air quality error: {e}")
+            logger.error(f" Air quality error: {e}", exc_info=True)
+            print(f"[weather_service]  Air quality error: {e}")
             return None
 
     # ---------------- CLIMATE SUMMARY ----------------
@@ -143,7 +143,6 @@ class WeatherService:
             summary += "Cold temps — warm layers."
         return summary
 
-    # ---------------- BEST TRAVEL DAY ----------------
     # ---------------- BEST TRAVEL DAY ----------------
     def get_best_travel_day(self, latitude: float, longitude: float) -> Optional[Dict[str, Any]]:
         """
@@ -195,7 +194,7 @@ class WeatherService:
             reasons.append(f"overall condition: {best_day['condition'].lower()}")
 
             explanation = (
-                f"🌟 The best travel day is **{best_day['date']}**, "
+                f" The best travel day is **{best_day['date']}**, "
                 f"with {best_day['min_temp']}–{best_day['max_temp']}°C and "
                 f"{best_day['precipitation']}mm rain. "
                 f"This day was chosen because of " + ", ".join(reasons) + "."
@@ -203,8 +202,8 @@ class WeatherService:
 
             best_day["advice"] = explanation
 
-            logger.info(f"🌟 Best travel day selected: {explanation}")
-            print(f"[weather_service] 🌟 Best travel day: {explanation}")
+            logger.info(f" Best travel day selected: {explanation}")
+            print(f"[weather_service]  Best travel day: {explanation}")
             return best_day
 
         return None

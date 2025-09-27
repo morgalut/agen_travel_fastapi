@@ -19,8 +19,8 @@ class TravelAssistant:
     """Optimized travel assistant with stronger intent detection and hotel integration."""
 
     def __init__(self, llm_api_url: str = "http://localhost:11434/api/generate", model: str = "llama3.2:1b"):
-        logger.info("🚀 Initializing TravelAssistant...")
-        print("[assistant] 🚀 Initializing TravelAssistant...")
+        logger.info(" Initializing TravelAssistant...")
+        print("[assistant]  Initializing TravelAssistant...")
 
         self.llm_api_url = os.getenv("LLM_API_URL", "http://localhost:11434/api/generate")
 
@@ -44,8 +44,8 @@ class TravelAssistant:
         self.consecutive_errors = 0
         self.max_consecutive_errors = 2
 
-        logger.info(f"✅ TravelAssistant ready with model: {model}")
-        print(f"[assistant] ✅ TravelAssistant initialized with model: {model}")
+        logger.info(f" TravelAssistant ready with model: {model}")
+        print(f"[assistant]  TravelAssistant initialized with model: {model}")
 
     async def _close(self):
         try:
@@ -118,7 +118,7 @@ class TravelAssistant:
             return "food_recommendations"
         return None
 
-    # ✅ Make this async and await call_llm properly
+    #  Make this async and await call_llm properly
     async def _generate_followup_question(self, query_type: QueryType, entities: Dict[str, Any]) -> Optional[str]:
         known_facts = [f"{k}: {v}" for k, v in entities.items() if v]
         known_context = "; ".join(known_facts) if known_facts else "None yet"
@@ -170,8 +170,8 @@ class TravelAssistant:
 
             return (
                 f"**Where to Stay in {destination}{f', {country}' if country else ''}{type_note}:**\n\n"
-                f"🏨 **Options**\n{hotel_list}\n\n"
-                "💡 **Booking Tips**\n"
+                f" **Options**\n{hotel_list}\n\n"
+                " **Booking Tips**\n"
                 "• Book early for peak seasons.\n"
                 "• Compare reviews across platforms.\n"
                 "• Pick walkable areas near your top sights or reliable transit."
@@ -189,37 +189,37 @@ class TravelAssistant:
         # (unchanged content shortened for brevity)
         return f"""**Top Attractions in {destination}{f', {country}' if country else ''}:**
 
-🏛️ **Cultural & Historical Sites**
+ **Cultural & Historical Sites**
 • Main museums and historical landmarks
 • Important religious or government buildings
 • Local architectural highlights
 
-🌆 **Neighborhoods & Local Life**
+ **Neighborhoods & Local Life**
 • Popular shopping and dining areas
 • Scenic viewpoints and parks
 • Cultural districts and markets
 
-🎭 **Activities & Entertainment**
+ **Activities & Entertainment**
 • Local festivals and events
 • Outdoor activities and nature spots
 • Evening entertainment options
 
-💡 **Tips:** Check opening hours, consider transit passes, try regional cuisine!
+ **Tips:** Check opening hours, consider transit passes, try regional cuisine!
 """
 
     def _get_packing_response(self, destination: str, country: str) -> str:
         return f"""**Packing List for {destination}{f', {country}' if country else ''}:**
 
-👕 Clothing
+ Clothing
 • Weather-appropriate layers
 • Comfortable walking shoes
 • Light rain protection
 
-📱 Essentials
+ Essentials
 • Power adapter, power bank
 • Copies of documents, insurance
 
-🎒 Day Gear
+ Day Gear
 • Small backpack
 • Water bottle, sun protection
 """
@@ -300,7 +300,7 @@ What vibe are you after and when?"""
                 pass
 
         except Exception as e:
-            logger.warning(f"⚠️ Targeted queries failed: {e}")
+            logger.warning(f" Targeted queries failed: {e}")
 
         return results
 
@@ -363,15 +363,15 @@ What vibe are you after and when?"""
             self.prompt_engine.add_to_history("assistant", answer)
 
             return {
-                "answer": answer or "⚠️ I wasn’t able to generate a response.",
+                "answer": answer or "I wasn’t able to generate a response.",
                 "followup": followup_q,
                 "context": self.get_conversation_summary(),
             }
 
         except Exception as e:
-            logger.error(f"❌ generate_response failed: {e}", exc_info=True)
+            logger.error(f" generate_response failed: {e}", exc_info=True)
             return {
-                "answer": "⚠️ Sorry, I hit an error while generating your response.",
+                "answer": " Sorry, I hit an error while generating your response.",
                 "followup": "Can you rephrase or ask a simpler question?",
                 "context": self.get_conversation_summary(),
             }

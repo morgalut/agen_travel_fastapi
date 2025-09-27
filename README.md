@@ -45,6 +45,13 @@ pip install -r requirements.txt
 uvicorn main:app --reload --port 8000
 ```
 
+### Step 1 – Install and Run Frontend
+```bash
+cd Frontend
+npm install
+npm run dev
+```
+
 #### Option B: Docker (Recommended)
 ```bash
 sudo docker compose up -d --build

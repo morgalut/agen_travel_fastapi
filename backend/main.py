@@ -60,9 +60,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger("travel_assistant.main")
 if log_dir:
-    logger.info(f"🗄️ Logging to {log_dir}/app.log")
+    logger.info(f" Logging to {log_dir}/app.log")
 else:
-    logger.info("🗄️ File logging disabled (stdout only).")
+    logger.info(" File logging disabled (stdout only).")
 
 # ------------------ FASTAPI APP ------------------
 app = FastAPI(title="Travel Assistant API")
@@ -82,13 +82,13 @@ app.add_middleware(
 )
 
 app.include_router(routes_assistant.router, prefix="/assistant", tags=["assistant"])
-logger.info("🚀 FastAPI app initialized. Router /assistant mounted.")
+logger.info(" FastAPI app initialized. Router /assistant mounted.")
 
 # ------------------ Global Exception Handler ------------------
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
     tb = traceback.format_exc()
-    logger.error("❌ Unhandled error during request", exc_info=True)
+    logger.error(" Unhandled error during request", exc_info=True)
     return JSONResponse(
         status_code=500,
         content={
@@ -104,7 +104,7 @@ def clear_screen():
 
 def print_banner():
     banner = """
-    🧭 TRAVEL ASSISTANT 🧭
+     TRAVEL ASSISTANT 
     Your AI-powered travel planning companion
     """
     print(banner)
@@ -115,7 +115,7 @@ def run_cli():
 
     clear_screen()
     print_banner()
-    print("🔮 Assistant: Hello! How can I help you with your travel plans today?")
+    print(" Assistant: Hello! How can I help you with your travel plans today?")
 
     while True:
         try:
@@ -123,18 +123,18 @@ def run_cli():
             if not user_input:
                 continue
             if user_input.lower() in ("quit", "exit", "bye"):
-                print("\n👋 Safe travels!")
+                print("\n Safe travels!")
                 break
-            print("\n🤖 Thinking...")
+            print("\n Thinking...")
             # If your assistant.generate_response is async, you can adapt with asyncio.run here.
             resp = asyncio.run(assistant.generate_response(user_input))  # if generate_response is async
-            print(f"\n🔮 Assistant: {format_response(resp)}")
+            print(f"\n Assistant: {format_response(resp)}")
         except KeyboardInterrupt:
-            print("\n\n👋 Safe travels!")
+            print("\n\n Safe travels!")
             break
         except Exception as e:
             logger.exception("CLI error")
-            print(f"❌ Error: {e}")
+            print(f" Error: {e}")
 
 if __name__ == "__main__":
     # Local CLI

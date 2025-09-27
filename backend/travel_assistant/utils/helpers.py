@@ -11,8 +11,8 @@ logger = logging.getLogger(__name__)
 
 def geocode_location(query: str):
     """Forward geocode a place name and return lat/lon + country when available."""
-    logger.info(f"🌍 Geocoding request for city: {query}")
-    print(f"[helpers] 🌍 Looking up coordinates for: {query}")
+    logger.info(f" Geocoding request for city: {query}")
+    print(f"[helpers]  Looking up coordinates for: {query}")
 
     try:
         r = requests.get(
@@ -28,15 +28,15 @@ def geocode_location(query: str):
                 "lat": res["latitude"],
                 "lon": res["longitude"],
                 "name": res.get("name"),
-                "country": res.get("country"),           # ✅ new
-                "country_code": res.get("country_code"), # ✅ new (ISO-2)
+                "country": res.get("country"),           #  new
+                "country_code": res.get("country_code"), #  new (ISO-2)
             }
-            logger.info(f"✅ Geocode success: {query} → {data}")
-            print(f"[helpers] ✅ Found coordinates for {query}: {data}")
+            logger.info(f" Geocode success: {query} → {data}")
+            print(f"[helpers]  Found coordinates for {query}: {data}")
             return data
         return None
     except Exception as e:
-        logger.error(f"❌ Geocode error for {query}: {e}", exc_info=True)
+        logger.error(f" Geocode error for {query}: {e}", exc_info=True)
         return None
 
 
@@ -44,7 +44,7 @@ def geocode_location(query: str):
 def format_response(response: str) -> str:
     """Format LLM response for better readability"""
     logger.debug("Formatting LLM response")
-    print("[helpers] ✏️ Formatting LLM response")
+    print("[helpers]  Formatting LLM response")
 
     # Clean up common LLM artifacts
     response = response.replace("\\n", "\n").strip()
@@ -66,7 +66,7 @@ def format_response(response: str) -> str:
 def validate_travel_data(data: Dict[str, Any]) -> bool:
     """Validate travel-related data"""
     logger.debug(f"Validating travel data: keys={list(data.keys())}")
-    print("[helpers] 🔍 Validating travel data")
+    print("[helpers]  Validating travel data")
     required_fields = {
         'destination_recommendation': ['interests'],
         'packing_suggestions': ['destination'],
@@ -78,29 +78,29 @@ def validate_travel_data(data: Dict[str, Any]) -> bool:
 
 def save_conversation(conversation_data: Dict[str, Any], filename: str):
     """Save conversation to file"""
-    logger.info(f"💾 Saving conversation to {filename}")
-    print(f"[helpers] 💾 Saving conversation to {filename}")
+    logger.info(f" Saving conversation to {filename}")
+    print(f"[helpers]  Saving conversation to {filename}")
     try:
         with open(filename, 'w') as f:
             json.dump(conversation_data, f, indent=2)
-        logger.info("✅ Conversation saved successfully")
+        logger.info(" Conversation saved successfully")
     except Exception as e:
-        logger.error(f"❌ Failed to save conversation: {e}", exc_info=True)
-        print(f"[helpers] ❌ Failed to save conversation: {e}")
+        logger.error(f" Failed to save conversation: {e}", exc_info=True)
+        print(f"[helpers]  Failed to save conversation: {e}")
 
 
 def load_conversation(filename: str) -> Dict[str, Any]:
     """Load conversation from file"""
-    logger.info(f"📂 Loading conversation from {filename}")
-    print(f"[helpers] 📂 Loading conversation from {filename}")
+    logger.info(f" Loading conversation from {filename}")
+    print(f"[helpers]  Loading conversation from {filename}")
     try:
         with open(filename, 'r') as f:
             data = json.load(f)
-        logger.info("✅ Conversation loaded successfully")
+        logger.info(" Conversation loaded successfully")
         return data
     except Exception as e:
-        logger.error(f"❌ Failed to load conversation: {e}", exc_info=True)
-        print(f"[helpers] ❌ Failed to load conversation: {e}")
+        logger.error(f" Failed to load conversation: {e}", exc_info=True)
+        print(f"[helpers]  Failed to load conversation: {e}")
         return {}
 
 

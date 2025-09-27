@@ -39,8 +39,8 @@ class CountryService:
         }
 
     def get_country_info(self, place_name: str) -> Optional[Dict[str, Any]]:
-        logger.info(f"🌍 Fetching country info for: {place_name}")
-        print(f"[country_service] 🌍 Looking up information for: {place_name}")
+        logger.info(f" Fetching country info for: {place_name}")
+        print(f"[country_service]  Looking up information for: {place_name}")
 
         try:
             # 1) Try to resolve a country name
@@ -75,13 +75,13 @@ class CountryService:
                 return None
 
             result = self._build_country_summary(data)
-            logger.info(f"✅ Country info retrieved successfully for {result.get('name')}")
-            print(f"[country_service] ✅ Country info ready: {result['capital']}, {result['region']}")
+            logger.info(f" Country info retrieved successfully for {result.get('name')}")
+            print(f"[country_service]  Country info ready: {result['capital']}, {result['region']}")
             return result
 
         except Exception as e:
-            logger.error(f"❌ Country API error for {place_name}: {e}", exc_info=True)
-            print(f"[country_service] ❌ Failed to fetch country info for {place_name}: {e}")
+            logger.error(f" Country API error for {place_name}: {e}", exc_info=True)
+            print(f"[country_service]  Failed to fetch country info for {place_name}: {e}")
             return None
 
 # -------------------- Hotel Service --------------------
@@ -99,8 +99,8 @@ class HotelService:
         """
         Get a list of nearby hotels/hostels (basic info).
         """
-        logger.info(f"🏨 Fetching hotels near {lat},{lon}")
-        print(f"[hotel_service] 🏨 Hotels lookup for {lat},{lon}")
+        logger.info(f" Fetching hotels near {lat},{lon}")
+        print(f"[hotel_service]  Hotels lookup for {lat},{lon}")
 
         query = f"""
         [out:json];
@@ -127,12 +127,12 @@ class HotelService:
                 for el in elements[:limit]
             ]
 
-            logger.info(f"✅ Found {len(hotels)} hotels")
-            print(f"[hotel_service] ✅ Found {len(hotels)} hotels near {lat},{lon}")
+            logger.info(f" Found {len(hotels)} hotels")
+            print(f"[hotel_service]  Found {len(hotels)} hotels near {lat},{lon}")
             return hotels
         except Exception as e:
-            logger.error(f"❌ Hotel API error: {e}", exc_info=True)
-            print(f"[hotel_service] ❌ Failed to fetch hotels: {e}")
+            logger.error(f" Hotel API error: {e}", exc_info=True)
+            print(f"[hotel_service]  Failed to fetch hotels: {e}")
             return []
 
 
@@ -151,8 +151,8 @@ class TransportService:
         """
         Get transport stops (bus, train, metro) within a radius.
         """
-        logger.info(f"🚉 Fetching transport stops near {lat},{lon}")
-        print(f"[transport_service] 🚉 Transport stops lookup for {lat},{lon}")
+        logger.info(f" Fetching transport stops near {lat},{lon}")
+        print(f"[transport_service]  Transport stops lookup for {lat},{lon}")
 
         query = f"""
         [out:json];
@@ -177,11 +177,11 @@ class TransportService:
                 }
                 for el in elements
             ]
-            logger.info(f"✅ Found {len(stops)} stops")
+            logger.info(f" Found {len(stops)} stops")
             return stops
         except Exception as e:
-            logger.error(f"❌ Transport API error: {e}", exc_info=True)
-            print(f"[transport_service] ❌ Failed to fetch transport info: {e}")
+            logger.error(f" Transport API error: {e}", exc_info=True)
+            print(f"[transport_service]  Failed to fetch transport info: {e}")
             return []
 
 
@@ -200,8 +200,8 @@ class AttractionsService:
         """
         Get tourist attractions (museums, historic sites, landmarks, parks).
         """
-        logger.info(f"🗺️ Fetching attractions near {lat},{lon}")
-        print(f"[attractions_service] 🗺️ Attractions lookup for {lat},{lon}")
+        logger.info(f" Fetching attractions near {lat},{lon}")
+        print(f"[attractions_service]  Attractions lookup for {lat},{lon}")
 
         query = f"""
         [out:json];
@@ -235,12 +235,12 @@ class AttractionsService:
                 for el in elements[:limit]
             ]
 
-            logger.info(f"✅ Found {len(attractions)} attractions")
-            print(f"[attractions_service] ✅ Found {len(attractions)} attractions near {lat},{lon}")
+            logger.info(f" Found {len(attractions)} attractions")
+            print(f"[attractions_service]  Found {len(attractions)} attractions near {lat},{lon}")
             return attractions
         except Exception as e:
-            logger.error(f"❌ Attractions API error: {e}", exc_info=True)
-            print(f"[attractions_service] ❌ Failed to fetch attractions: {e}")
+            logger.error(f" Attractions API error: {e}", exc_info=True)
+            print(f"[attractions_service]  Failed to fetch attractions: {e}")
             return []
 
 
@@ -283,5 +283,5 @@ class AttractionsService:
                 })
             return out
         except Exception as e:
-            logger.error(f"❌ Attractions-by-country API error: {e}", exc_info=True)
+            logger.error(f" Attractions-by-country API error: {e}", exc_info=True)
             return []
